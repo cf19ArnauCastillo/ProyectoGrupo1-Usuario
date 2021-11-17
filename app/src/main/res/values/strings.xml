@@ -2,4 +2,14 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Login-->
+    <string name="txtLogin">Log in</string>
+    <string name="txtUsername">Username</string>
+    <string name="txtPassword">Password</string>
+    <string name="txtCreateAccount">Create account</string>
+
+    <!-- Register-->
+    <string name="txtRegister">Register</string>
+
 </resources>

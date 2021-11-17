@@ -23,13 +23,15 @@
 
                 <ImageView
                     android:id="@+id/imgLogo"
-                    android:layout_width="195dp"
-                    android:layout_height="179dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_width="163dp"
+                    android:layout_height="137dp"
+                    android:layout_marginTop="80dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@drawable/ic_logo" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -38,16 +40,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="556dp">
 
-                <EditText
-                    android:id="@+id/txtLoginTitle"
+                <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="80dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:inputType="textPersonName"
                     android:text="@string/txtLogin"
-                    tools:layout_editor_absoluteX="40dp"
-                    tools:layout_editor_absoluteY="104dp" />
+                    android:textColor="@color/red"
+                    android:textSize="48sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/txtUsername"
+                    android:layout_width="330dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/custom_login_username"
+                    android:drawablePadding="20dp"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/txtUsername"
+                    android:includeFontPadding="true"
+                    android:inputType="textPersonName"
+                    android:padding="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="30dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/txtUsername"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <EditText
+                    android:id="@+id/txtUsername2"
+                    android:layout_width="330dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/custom_login_username"
+                    android:drawablePadding="20dp"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/txtUsername"
+                    android:includeFontPadding="true"
+                    android:inputType="textPersonName"
+                    android:padding="20dp"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="30dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/txtUsername"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

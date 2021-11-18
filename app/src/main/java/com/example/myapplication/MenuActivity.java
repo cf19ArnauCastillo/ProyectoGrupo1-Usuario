@@ -17,13 +17,13 @@ public class MenuActivity {
             Fragment selectedFragment = null;
             switch (item.getItemId()){
                 case R.id.nav_menu:
-                    selectedFragment = new MenuActivity();
+                    selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new FormFragment();
+                    selectedFragment = new FragmentCarrito();
                     break;
                 case R.id.nav_settings:
-                    selectedFragment = new ListFragment();
+                    selectedFragment = new FragmentSettings();
                     break;
             }
 

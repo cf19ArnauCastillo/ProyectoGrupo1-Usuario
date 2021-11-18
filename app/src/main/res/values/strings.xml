@@ -7,9 +7,11 @@
     <string name="txtLogin">Log in</string>
     <string name="txtUsername">Username</string>
     <string name="txtPassword">Password</string>
-    <string name="txtCreateAccount">Create account</string>
+    <string name="txtCreateAccount">Create an account</string>
+    <string name="txtDontAccount">You don\'t have account?</string>
 
     <!-- Register-->
     <string name="txtRegister">Register</string>
     <string name="txtMail">Mail</string>
+
 </resources>

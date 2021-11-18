@@ -22,7 +22,7 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewForm = inflater.inflate(R.layout.fragment_home, container, false);
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return viewForm;
 
     }
 }

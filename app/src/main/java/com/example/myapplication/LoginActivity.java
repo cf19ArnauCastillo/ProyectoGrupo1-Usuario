@@ -6,29 +6,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_screen);
+        setContentView(R.layout.activity_login);
 
-        Button btnSigIn = findViewById(R.id.btnSingIn);
-        EditText textMail = findViewById(R.id.txtMail);
-        EditText txtPassword = findViewById(R.id.txtPassword);
+        Button btnSigIn = findViewById(R.id.btnSigInLogin);
+        EditText textMail = findViewById(R.id.txtMailLogin);
+        EditText txtPassword = findViewById(R.id.txtPasswordLogin);
+        TextView btnRegister = findViewById(R.id.btnRegister);
 
 
         // If the user already access into the app, goes directly to home screen
         SharedPreferences prefs = getSharedPreferences("SharedP", Context.MODE_PRIVATE);
 
-        if (prefs.getBoolean("login", false)) startHome();
+        //if (prefs.getBoolean("login", false)) startHome();
 
 
         /**
@@ -48,14 +49,28 @@ public class MainActivity extends AppCompatActivity {
         });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "hola", Toast.LENGTH_LONG).show();
                 startRegister ();
             }
         });
-        public void startHome () {
-            startActivity(new Intent(getApplicationContext(), MenuFragment.class));
-        }
-        public void startRegister () {
-            startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-        }
+    }
+    public void startHome () {
+        startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+    }
+    public void startRegister () {
+        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+    }
+    /**
+     * Save preferences into SharedPreferences
+     * @param prefs: instance of SP
+     * @param mail: user
+     */
+    public void savePreferences(SharedPreferences prefs, String mail) {
+        SharedPreferences.Editor prefsEdits = prefs.edit();
+
+        prefsEdits.putString("mail", mail);
+        prefsEdits.putBoolean("login", true);
+
+        prefsEdits.commit();
     }
 }

@@ -11,5 +11,5 @@
 
     <!-- Register-->
     <string name="txtRegister">Register</string>
-
+    <string name="txtMail">Mail</string>
 </resources>

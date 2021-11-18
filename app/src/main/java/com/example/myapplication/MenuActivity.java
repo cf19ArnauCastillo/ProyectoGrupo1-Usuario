@@ -7,15 +7,20 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        // Initialize in home fragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
+
         /**
          * Bottom navigation: change the screen to the fragment selected.
          */
-        BottomNavigationView bottomNav = findViewById(R.id.);
+        BottomNavigationView bottomNav = findViewById(R.id.main_menu);
         bottomNav.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.nav_menu:
                     selectedFragment = new FragmentHome();
                     break;
@@ -30,4 +35,5 @@ public class MenuActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
         });
+    }
 }

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_screen);
 
         Button btnSigIn = findViewById(R.id.btnSingIn);
         EditText textMail = findViewById(R.id.txtMail);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                startRegister ();
             }
         });
         public void startHome () {

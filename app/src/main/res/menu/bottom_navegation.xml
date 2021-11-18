@@ -4,7 +4,7 @@
         android:title="Menu"
         android:icon="@drawable/ic_menu">
     </item>
-    <item android:id="@+id/nav_car"
+    <item android:id="@+id/nav_cart"
         android:title="Cart"
         android:icon="@drawable/ic_cart">
     </item>

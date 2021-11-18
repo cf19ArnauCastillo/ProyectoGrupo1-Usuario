@@ -12,7 +12,7 @@ public class MenuActivity {
         /**
          * Bottom navigation: change the screen to the fragment selected.
          */
-        BottomNavigationView bottomNav = findViewById(R.id.);
+        BottomNavigationView bottomNav = findViewById(R.id.main_menu);
         bottomNav.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             switch (item.getItemId()){

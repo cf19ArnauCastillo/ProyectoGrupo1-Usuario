@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/custom_login_username.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/button_red.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/tewst.xml" value="0.371875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_carrito.xml" value="0.75" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/login_screen.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/register_screen.xml" value="0.2" />

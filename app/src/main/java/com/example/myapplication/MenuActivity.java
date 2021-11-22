@@ -23,13 +23,13 @@ public class MenuActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             switch (item.getItemId()){
                 case R.id.nav_menu:
-                    selectedFragment = new com.example.myapplication.Fragments.FragmentHome();
+                    selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new com.example.myapplication.Fragments.FragmentCarrito();
+                    selectedFragment = new FragmentCarrito();
                     break;
                 case R.id.nav_settings:
-                    selectedFragment = new com.example.myapplication.Fragments.FragmentSettings();
+                    selectedFragment = new FragmentSettings();
                     break;
 
             }

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="119dp"
-        android:background="@color/orange">
+        android:background="@color/red">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -34,7 +34,7 @@
                 android:layout_height="30dp"
                 android:fontFamily="@font/roboto"
                 android:text="Pizzas"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +55,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.077" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="408dp"
+                android:layout_height="574dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.77" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

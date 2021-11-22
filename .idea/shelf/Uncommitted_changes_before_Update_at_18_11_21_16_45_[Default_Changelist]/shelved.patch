@@ -1,0 +1,249 @@
+Index: app/src/main/res/layout/fragment_carrito.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".FragmentCarrito\">\n\n    <!-- TODO: Update blank fragment layout -->\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n\n        <Button\n            android:id=\"@+id/button\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"120dp\"\n            android:layout_marginTop=\"408dp\"\n            android:background=\"@drawable/tewst\"\n            android:text=\"Button\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\" />\n    </androidx.constraintlayout.widget.ConstraintLayout>\n\n    <!-- Button -->\n\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_carrito.xml b/app/src/main/res/layout/fragment_carrito.xml
+--- a/app/src/main/res/layout/fragment_carrito.xml	(revision edbc8613f49f6aa7326810b51615ba3940cf89b8)
++++ b/app/src/main/res/layout/fragment_carrito.xml	(date 1637247012763)
+@@ -11,17 +11,6 @@
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+ 
+-
+-        <Button
+-            android:id="@+id/button"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_marginStart="120dp"
+-            android:layout_marginTop="408dp"
+-            android:background="@drawable/tewst"
+-            android:text="Button"
+-            app:layout_constraintStart_toStartOf="parent"
+-            app:layout_constraintTop_toTopOf="parent" />
+     </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+     <!-- Button -->
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<FrameLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".FragmentHome\">\n\n    <!-- TODO: Update blank fragment layout -->\n    <TextView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:text=\"@string/hello_blank_fragment\" />\n\n</FrameLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision edbc8613f49f6aa7326810b51615ba3940cf89b8)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1637250145672)
+@@ -1,14 +1,61 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     tools:context=".FragmentHome">
+ 
+     <!-- TODO: Update blank fragment layout -->
+-    <TextView
++    <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:text="@string/hello_blank_fragment" />
++        android:layout_height="119dp"
++        android:background="@color/orange">
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.constraintlayout.widget.ConstraintLayout
++            android:layout_width="410dp"
++            android:layout_height="731dp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintHorizontal_bias="1.0"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            app:layout_constraintVertical_bias="0.0">
++
++            <TextView
++                android:id="@+id/textView2"
++                android:layout_width="72dp"
++                android:layout_height="30dp"
++                android:fontFamily="@font/roboto"
++                android:text="Pizzas"
++                android:textColor="#000000"
++                android:textSize="24sp"
++                android:textStyle="bold"
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toTopOf="parent"
++                app:layout_constraintVertical_bias="0.022" />
++
++            <SearchView
++                android:id="@+id/search_view"
++                android:layout_width="286dp"
++                android:layout_height="46dp"
++                android:layout_centerHorizontal="true"
++                android:background="@drawable/searchbar"
++                android:clickable="true"
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toTopOf="parent"
++                app:layout_constraintVertical_bias="0.077" />
++        </androidx.constraintlayout.widget.ConstraintLayout>
++    </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+ </FrameLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/myapplication/FragmentHome.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication;\n\nimport android.os.Bundle;\n\nimport androidx.fragment.app.Fragment;\n\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\n\n/**\n * A simple {@link Fragment} subclass.\n * Use the {@link FragmentHome#newInstance} factory method to\n * create an instance of this fragment.\n */\npublic class FragmentHome extends Fragment {\n\n    // TODO: Rename parameter arguments, choose names that match\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\n    private static final String ARG_PARAM1 = \"param1\";\n    private static final String ARG_PARAM2 = \"param2\";\n\n    // TODO: Rename and change types of parameters\n    private String mParam1;\n    private String mParam2;\n\n    public FragmentHome() {\n        // Required empty public constructor\n    }\n\n    /**\n     * Use this factory method to create a new instance of\n     * this fragment using the provided parameters.\n     *\n     * @param param1 Parameter 1.\n     * @param param2 Parameter 2.\n     * @return A new instance of fragment FragmentHome.\n     */\n    // TODO: Rename and change types and number of parameters\n    public static FragmentHome newInstance(String param1, String param2) {\n        FragmentHome fragment = new FragmentHome();\n        Bundle args = new Bundle();\n        args.putString(ARG_PARAM1, param1);\n        args.putString(ARG_PARAM2, param2);\n        fragment.setArguments(args);\n        return fragment;\n    }\n\n    @Override\n    public void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        if (getArguments() != null) {\n            mParam1 = getArguments().getString(ARG_PARAM1);\n            mParam2 = getArguments().getString(ARG_PARAM2);\n        }\n    }\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n        // Inflate the layout for this fragment\n        return inflater.inflate(R.layout.fragment_home, container, false);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/FragmentHome.java b/app/src/main/java/com/example/myapplication/FragmentHome.java
+--- a/app/src/main/java/com/example/myapplication/FragmentHome.java	(revision edbc8613f49f6aa7326810b51615ba3940cf89b8)
++++ b/app/src/main/java/com/example/myapplication/FragmentHome.java	(date 1637247637720)
+@@ -8,57 +8,19 @@
+ import android.view.View;
+ import android.view.ViewGroup;
+ 
+-/**
+- * A simple {@link Fragment} subclass.
+- * Use the {@link FragmentHome#newInstance} factory method to
+- * create an instance of this fragment.
+- */
+ public class FragmentHome extends Fragment {
+ 
+-    // TODO: Rename parameter arguments, choose names that match
+-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+-    private static final String ARG_PARAM1 = "param1";
+-    private static final String ARG_PARAM2 = "param2";
+-
+-    // TODO: Rename and change types of parameters
+-    private String mParam1;
+-    private String mParam2;
+-
+     public FragmentHome() {
+-        // Required empty public constructor
++            // Required empty public constructor
+     }
+ 
+-    /**
+-     * Use this factory method to create a new instance of
+-     * this fragment using the provided parameters.
+-     *
+-     * @param param1 Parameter 1.
+-     * @param param2 Parameter 2.
+-     * @return A new instance of fragment FragmentHome.
+-     */
+-    // TODO: Rename and change types and number of parameters
+-    public static FragmentHome newInstance(String param1, String param2) {
+-        FragmentHome fragment = new FragmentHome();
+-        Bundle args = new Bundle();
+-        args.putString(ARG_PARAM1, param1);
+-        args.putString(ARG_PARAM2, param2);
+-        fragment.setArguments(args);
+-        return fragment;
+-    }
+-
+-    @Override
+-    public void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
+-            mParam1 = getArguments().getString(ARG_PARAM1);
+-            mParam2 = getArguments().getString(ARG_PARAM2);
+-        }
+-    }
+-
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+         // Inflate the layout for this fragment
++        View viewForm = inflater.inflate(R.layout.fragment_form, container, false);
++
+         return inflater.inflate(R.layout.fragment_home, container, false);
++
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/res/drawable/button_red.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/button_red.xml b/app/src/main/res/drawable/searchbar.xml
+rename from app/src/main/res/drawable/button_red.xml
+rename to app/src/main/res/drawable/searchbar.xml
+--- a/app/src/main/res/drawable/button_red.xml	(revision edbc8613f49f6aa7326810b51615ba3940cf89b8)
++++ b/app/src/main/res/drawable/searchbar.xml	(date 1637250063291)
+@@ -1,4 +1,18 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <selector xmlns:android="http://schemas.android.com/apk/res/android">
+ 
++    <item android:state_enabled="true" android:state_focused="false">
++    <!-- Text Field -->
++    <shape xmlns:android="http://schemas.android.com/apk/res/android">
++        <solid android:color="#ffffff"/>
++        <stroke android:color="@color/gray" android:width="2dp" />
++        <corners android:radius="8dp"/>
++        <padding android:left="8dp"
++            android:bottom="8dp"
++            android:right="8dp"
++            android:top="8dp"/>
++    </shape>
++
++    </item>
++
+ </selector>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n    <color name=\"red\">#d0302a</color>\n    <color name=\"red_light\">#ce5f2d</color>\n    <color name=\"orange\">#f9b966</color>\n    <color name=\"yellow\">#fbe083</color>\n    <color name=\"green\">#a1cca5</color>\n    <color name=\"white\">#FFFFFF</color>\n    <color name=\"black\">#070707</color>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision edbc8613f49f6aa7326810b51615ba3940cf89b8)
++++ b/app/src/main/res/values/colors.xml	(date 1637250055803)
+@@ -7,4 +7,5 @@
+     <color name="green">#a1cca5</color>
+     <color name="white">#FFFFFF</color>
+     <color name="black">#070707</color>
++    <color name="gray">#bfbdbd</color>
+ </resources>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"app/src/main/res/drawable-v24/custom_login_username.xml\" value=\"0.371875\" />\n        <entry key=\"app/src/main/res/drawable/button_red.xml\" value=\"0.371875\" />\n        <entry key=\"app/src/main/res/drawable/tewst.xml\" value=\"0.371875\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.17299898682877407\" />\n        <entry key=\"app/src/main/res/layout/activity_menu.xml\" value=\"0.25\" />\n        <entry key=\"app/src/main/res/layout/fragment_carrito.xml\" value=\"0.75\" />\n        <entry key=\"app/src/main/res/layout/fragment_menu.xml\" value=\"0.17299898682877407\" />\n        <entry key=\"app/src/main/res/layout/login_screen.xml\" value=\"0.17299898682877407\" />\n        <entry key=\"app/src/main/res/layout/register_screen.xml\" value=\"0.2\" />\n        <entry key=\"app/src/main/res/menu/bottom_navegation.xml\" value=\"0.19322916666666667\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision edbc8613f49f6aa7326810b51615ba3940cf89b8)
++++ b/.idea/misc.xml	(date 1637249163105)
+@@ -5,10 +5,13 @@
+       <map>
+         <entry key="app/src/main/res/drawable-v24/custom_login_username.xml" value="0.371875" />
+         <entry key="app/src/main/res/drawable/button_red.xml" value="0.371875" />
++        <entry key="app/src/main/res/drawable/ic_cart.xml" value="0.371875" />
++        <entry key="app/src/main/res/drawable/searchbar.xml" value="0.371875" />
+         <entry key="app/src/main/res/drawable/tewst.xml" value="0.371875" />
+         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17299898682877407" />
+         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.25" />
+-        <entry key="app/src/main/res/layout/fragment_carrito.xml" value="0.75" />
++        <entry key="app/src/main/res/layout/fragment_carrito.xml" value="0.47463516330785266" />
++        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.17299898682877407" />
+         <entry key="app/src/main/res/layout/login_screen.xml" value="0.17299898682877407" />
+         <entry key="app/src/main/res/layout/register_screen.xml" value="0.2" />

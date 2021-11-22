@@ -5,15 +5,18 @@ import java.io.Serializable;
 public class Pizza implements Serializable {
     public String pizzaname;
     public String description;
+    public String tipo;
     public int price;
 
     public Pizza(){
     }
 
-    public Pizza(String playerName, int age, String position, int shirtNo, int goal) {
+    public Pizza(String pizzaname, String description, String tipo, int price) {
         this.pizzaname = pizzaname;
         this.description = description;
+        this.tipo = tipo;
         this.price = price;
+
 
     }
 
@@ -31,6 +34,14 @@ public class Pizza implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public int getPrice() {

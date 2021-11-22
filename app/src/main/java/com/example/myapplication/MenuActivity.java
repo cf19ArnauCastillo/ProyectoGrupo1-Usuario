@@ -16,7 +16,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         // Initialize in home fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new com.example.myapplication.Fragments.FragmentHome()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
 
         BottomNavigationView bottomNav = findViewById(R.id.main_menu);
         bottomNav.setOnItemSelectedListener(item -> {

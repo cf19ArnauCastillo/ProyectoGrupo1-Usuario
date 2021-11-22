@@ -1,64 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    tools:context=".FragmentLogin">
 
     <ScrollView
-        android:layout_width="412dp"
-        android:layout_height="730dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/imgLayout"
-                android:layout_width="match_parent"
-                android:layout_height="199dp">
-
-                <ImageView
-                    android:id="@+id/imgLogo"
-                    android:layout_width="118dp"
-                    android:layout_height="122dp"
-                    android:layout_marginTop="80dp"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/logo" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_login"
                 android:layout_width="match_parent"
-                android:layout_height="556dp">
-
-                <TextView
-                    android:id="@+id/txtLoginTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginTop="40dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="top"
-                    android:lineSpacingExtra="2sp"
-                    android:text="@string/txtLogin"
-                    android:textColor="@color/red"
-                    android:textSize="48sp"
-                    android:textStyle="bold"
-                    android:translationY="-0.95sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent">
 
                 <EditText
                     android:id="@+id/txtMailLogin"
@@ -80,10 +40,10 @@
                     android:text="123"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtLoginTitle" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/txtPasswordLogin"
+                    android:id="@+id/txtUserNameRegister"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"
@@ -106,7 +66,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtMailLogin" />
 
                 <Button
-                    android:id="@+id/btnSigInLogin"
+                    android:id="@+id/btnCreateAccount"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"
@@ -120,7 +80,7 @@
                     android:text="@string/txtLogin"
                     android:translationY="10dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtPasswordLogin" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtUserNameRegister" />
 
                 <TextView
                     android:id="@+id/txtDontAccount"
@@ -134,25 +94,10 @@
                     android:textColor="@color/black"
                     android:textSize="13dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnSigInLogin" />
-
-                <TextView
-                    android:id="@+id/btnRegister"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
-                    android:clickable="true"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/txtCreateAccount"
-                    android:textColor="@color/red"
-                    android:textSize="13dp"
-                    app:layout_constraintStart_toEndOf="@+id/txtDontAccount"
-                    app:layout_constraintTop_toBottomOf="@+id/btnSigInLogin" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

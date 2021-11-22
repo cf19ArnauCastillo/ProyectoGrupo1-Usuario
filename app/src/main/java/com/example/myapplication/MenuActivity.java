@@ -40,3 +40,4 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 }
+

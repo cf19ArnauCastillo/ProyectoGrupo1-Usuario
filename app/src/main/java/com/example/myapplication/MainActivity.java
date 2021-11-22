@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startRegister ();
+                startRegister();
             }
         });
-        public void startHome () {
-            startActivity(new Intent(getApplicationContext(), MenuFragment.class));
+        public void startHome(){
+            startActivity(new Intent(getApplicationContext(), FragmentHome.class));
         }
-        public void startRegister () {
+        public void startRegister(){
             startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
         }
     }

@@ -29,11 +29,7 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //holder.Textiño.setText(array_players.get(position).getPlayerName());
-        //holder.Textiño.setText(array_players.get(position).getAge());
-        //holder.Textiño.setText(array_players.get(position).getPosition());
-        //holder.Textiño.setText(array_players.get(position).getShirtNo());
-        //holder.Textiño.setText(array_players.get(position).getGoal());
+
     }
 
     @Override
@@ -43,10 +39,14 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView Textiño;
+        TextView Textiño1;
+        TextView Textiño2;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Textiño = itemView.findViewById(R.id.NombrePizza);
+            Textiño1 = itemView.findViewById(R.id.Descripcio);
+            Textiño2 = itemView.findViewById(R.id.Precio);
         }
     }
 }

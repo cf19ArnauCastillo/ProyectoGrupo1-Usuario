@@ -70,7 +70,6 @@ public class FragmentLogin extends Fragment {
         Button btnSigIn = view.findViewById(R.id.btnCreateAccount);
         EditText textMail = view.findViewById(R.id.txtMailLogin);
         EditText txtPassword = view.findViewById(R.id.txtUserNameRegister);
-        TextView btnRegister = view.findViewById(R.id.btnRegister);
 
 
         /**

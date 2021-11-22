@@ -30,20 +30,20 @@
                     android:drawablePadding="20dp"
                     android:ems="10"
                     android:fontFamily="@font/roboto"
-                    android:hint="@string/txtUsername"
+                    android:hint="@string/txtMail"
                     android:includeFontPadding="true"
                     android:padding="20dp"
                     android:paddingStart="30dp"
                     android:paddingTop="20dp"
                     android:paddingEnd="30dp"
                     android:paddingBottom="20dp"
-                    android:text="123"
+                    android:text="hola@gmail.com"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/txtUserNameRegister"
+                    android:id="@+id/txtUsernameRegister"
                     android:layout_width="330dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"
@@ -52,7 +52,7 @@
                     android:drawablePadding="20dp"
                     android:ems="10"
                     android:fontFamily="@font/roboto"
-                    android:hint="@string/txtMail"
+                    android:hint="@string/txtUsername"
                     android:includeFontPadding="true"
                     android:inputType="textPersonName"
                     android:padding="20dp"
@@ -60,7 +60,6 @@
                     android:paddingTop="20dp"
                     android:paddingEnd="30dp"
                     android:paddingBottom="20dp"
-                    android:text="123"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtMailLogin" />
@@ -83,10 +82,10 @@
                     android:paddingTop="20dp"
                     android:paddingEnd="30dp"
                     android:paddingBottom="20dp"
-                    android:text="123"
+                    android:text="123456"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtUserNameRegister" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtUsernameRegister" />
 
                 <Button
                     android:id="@+id/btnCreateAccount"

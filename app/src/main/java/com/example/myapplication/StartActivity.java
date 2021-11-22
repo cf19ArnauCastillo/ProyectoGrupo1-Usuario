@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -17,8 +16,8 @@ public class StartActivity extends AppCompatActivity {
         // Initialize in login fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentLogin()).commit();
 
-        TextView btnLogin = findViewById(R.id.btnLogin2);
-        TextView btnRegister = findViewById(R.id.btnRegister2);
+        TextView btnLogin = findViewById(R.id.btnLogin);
+        TextView btnRegister = findViewById(R.id.btnRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +35,5 @@ public class StartActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentRegister()).commit();
             }
         });
-
     }
 }

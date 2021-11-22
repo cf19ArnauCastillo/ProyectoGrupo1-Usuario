@@ -8,10 +8,11 @@
     android:background="@color/orange">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/fragment_container"
         android:name="com.example.myapplication.FragmentCarrito"
         android:layout_width="411dp"
         android:layout_height="674dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,6 +24,9 @@
         android:id="@+id/main_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemBackground="@color/orange"
+        app:itemIconTint="@drawable/menu_icons"
+        app:itemTextColor="@color/menu_icons_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

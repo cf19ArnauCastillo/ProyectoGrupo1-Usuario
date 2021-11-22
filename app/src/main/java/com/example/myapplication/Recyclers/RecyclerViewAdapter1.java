@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Classes.Pizza;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     @Override
     public int getItemCount() {
-        return array_players.size();
+        return array_pizza.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

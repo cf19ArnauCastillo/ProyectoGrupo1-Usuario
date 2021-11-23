@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintCategories"
+            android:id="@+id/constraintCart"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/red"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/titleCategory"
+                android:id="@+id/titleCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bold"
@@ -42,10 +42,10 @@
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintBottomCategories"
+            app:layout_constraintBottom_toTopOf="@+id/constraintButtomsCarts"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintCategories">
+            app:layout_constraintTop_toBottomOf="@+id/constraintCart">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
@@ -60,7 +60,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintBottomCategories"
+            android:id="@+id/constraintButtomsCarts"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,11 +68,11 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/btntramitar"
+                android:id="@+id/btnCheckout"
                 android:layout_width="140dp"
                 android:layout_height="49dp"
                 android:layout_marginBottom="10dp"
-                android:text="TRAMITAR"
+                android:text="@string/txtCheckout"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -82,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_total"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/btntramitar"
+                app:layout_constraintBottom_toTopOf="@+id/btnCheckout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 

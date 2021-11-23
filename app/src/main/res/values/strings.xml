@@ -27,7 +27,9 @@
     <!--Cart-->
     <string name="txtCart">Cart</string>
     <string name="txtTotal">Total:</string>
+    <string name="txtCheckout">Checkout</string>
     <!--Category-->
     <string name="txtCategories">Categories</string>
+
 
 </resources>

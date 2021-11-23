@@ -9,26 +9,27 @@
     <!-- TODO: Update blank fragment layout -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="411dp"
-        android:layout_height="674dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintCategories"
             android:layout_width="match_parent"
-            android:layout_height="119dp"
+            android:layout_height="80dp"
             android:background="@color/red"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/titleCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:text="Carrito"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/txtCart"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
+                android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -36,51 +37,82 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="413dp"
-            android:layout_height="417dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/constraintRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintBottomCategories"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/constraintCategories">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="654dp"
+                android:layout_height="match_parent"
                 android:backgroundTint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-        <Button
-            android:id="@+id/btntramitar"
-            android:layout_width="140dp"
-            android:layout_height="49dp"
-            android:text="TRAMITAR"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintBottomCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-            app:layout_constraintVertical_bias="0.816" />
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/txttotal"
-            android:layout_width="140dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/custom_carrito_total"
-            android:text="Total:"
-            android:textAlignment="center"
-            android:textColor="#100F0F"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            <Button
+                android:id="@+id/btntramitar"
+                android:layout_width="140dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="10dp"
+                android:text="TRAMITAR"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_total"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/btntramitar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:paddingStart="20px"
+                    android:paddingTop="20px"
+                    android:paddingEnd="10px"
+                    android:paddingBottom="20px"
+                    android:text="@string/txtTotal"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/intTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="20px"
+                    android:paddingRight="20px"
+                    android:paddingBottom="20px" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Button -->

@@ -23,4 +23,11 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+
+    <!--Cart-->
+    <string name="txtCart">Cart</string>
+    <string name="txtTotal">Total:</string>
+    <!--Category-->
+    <string name="txtCategories">Categories</string>
+
 </resources>

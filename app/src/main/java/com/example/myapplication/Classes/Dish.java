@@ -2,30 +2,28 @@ package com.example.myapplication.Classes;
 
 import java.io.Serializable;
 
-public class Pizza implements Serializable {
-    public String pizzaname;
+public class Dish implements Serializable {
+    public String dishname;
     public String description;
     public String tipo;
     public int price;
 
-    public Pizza(){
+    public Dish(){
     }
 
-    public Pizza(String pizzaname, String description, String tipo, int price) {
-        this.pizzaname = pizzaname;
+    public Dish(String dishname, String description, String tipo, int price) {
+        this.dishname = dishname;
         this.description = description;
         this.tipo = tipo;
         this.price = price;
-
-
     }
 
-    public String getPizzaname() {
-        return pizzaname;
+    public String getDishname() {
+        return dishname;
     }
 
-    public void setPizzaname(String pizzaname) {
-        this.pizzaname = pizzaname;
+    public void setDishname(String dishname) {
+        this.dishname = dishname;
     }
 
     public String getDescription() {

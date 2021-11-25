@@ -7,16 +7,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Classes.Pizza;
+import com.example.myapplication.Classes.Dish;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapter1.ViewHolder> {
-    private ArrayList<Pizza> array_pizza;
+    private ArrayList<Dish> array_dish;
 
-    public RecyclerViewAdapter1(ArrayList<Pizza> arrP){
-        array_pizza = arrP;
+    public RecyclerViewAdapter1(ArrayList<Dish> arrP){
+        array_dish = arrP;
     }
 
     @NonNull
@@ -34,7 +34,7 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     @Override
     public int getItemCount() {
-        return array_pizza.size();
+        return array_dish.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -44,7 +44,7 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            Textiño = itemView.findViewById(R.id.NombrePizza);
+            Textiño = itemView.findViewById(R.id.NombreDish);
             Textiño1 = itemView.findViewById(R.id.Descripcio);
             Textiño2 = itemView.findViewById(R.id.Precio);
         }

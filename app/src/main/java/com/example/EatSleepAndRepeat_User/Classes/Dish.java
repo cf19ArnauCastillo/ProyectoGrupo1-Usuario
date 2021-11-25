@@ -2,30 +2,30 @@ package com.example.EatSleepAndRepeat_User.Classes;
 
 import java.io.Serializable;
 
-public class Pizza implements Serializable {
-    public String pizzaname;
+public class Dish implements Serializable {
+    public String name;
     public String description;
-    public String tipo;
+    public String type;
     public int price;
 
-    public Pizza(){
+    public Dish(){
     }
 
-    public Pizza(String pizzaname, String description, String tipo, int price) {
-        this.pizzaname = pizzaname;
+    public Dish(String name, String description, String type, int price) {
+        this.name = name;
         this.description = description;
-        this.tipo = tipo;
+        this.type = type;
         this.price = price;
 
 
     }
 
-    public String getPizzaname() {
-        return pizzaname;
+    public String getName() {
+        return name;
     }
 
-    public void setPizzaname(String pizzaname) {
-        this.pizzaname = pizzaname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -36,12 +36,12 @@ public class Pizza implements Serializable {
         this.description = description;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getPrice() {

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.EatSleepAndRepeat_User;
 
 import android.os.Bundle;
 

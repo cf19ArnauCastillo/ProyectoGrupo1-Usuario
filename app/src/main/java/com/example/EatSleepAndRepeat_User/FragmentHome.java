@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.EatSleepAndRepeat_User;
 
 import android.os.Bundle;
 
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import com.example.myapplication.R;
+import com.example.EatSleepAndRepeat_User.R;
 
 public class FragmentHome extends Fragment {
 

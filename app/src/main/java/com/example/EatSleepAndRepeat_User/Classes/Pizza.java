@@ -1,4 +1,4 @@
-package com.example.myapplication.Classes;
+package com.example.EatSleepAndRepeat_User.Classes;
 
 import java.io.Serializable;
 

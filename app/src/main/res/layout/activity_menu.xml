@@ -9,7 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
-        android:name="com.example.myapplication.FragmentCarrito"
+        android:name="com.example.EatSleepAndRepeat_User.FragmentCarrito"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"

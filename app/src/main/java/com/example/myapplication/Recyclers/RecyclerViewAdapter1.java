@@ -27,6 +27,8 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
         return holder;
     }
 
+    //okay
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 

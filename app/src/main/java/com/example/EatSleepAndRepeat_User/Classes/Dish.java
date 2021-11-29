@@ -17,7 +17,6 @@ public class Dish implements Serializable {
         this.type = type;
         this.price = price;
 
-
     }
 
     public String getName() {

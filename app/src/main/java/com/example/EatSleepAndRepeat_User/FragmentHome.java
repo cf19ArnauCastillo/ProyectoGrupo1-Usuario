@@ -13,6 +13,7 @@ import android.widget.SearchView;
 
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.R;
+import com.example.myapplication.Recyclers.RecyclerViewAdapter1;
 
 public class FragmentHome extends Fragment {
 
@@ -29,5 +30,10 @@ public class FragmentHome extends Fragment {
         View viewForm = inflater.inflate(R.layout.fragment_home, container, false);
         return inflater.inflate(R.layout.fragment_home, container, false);
 
+        /*RecyclerView recyclerView = viewForm.findViewById(R.id.recylcer1);
+        RecyclerViewAdapter1 adapter = new RecyclerViewAdapter1(array_dish);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((viewForm.getContext())));
+         */
     }
 }

@@ -1,4 +1,4 @@
-/*package com.example.myapplication.Recyclers;
+package com.example.myapplication.Recyclers;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,16 +7,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Classes.Pizza;
-import com.example.myapplication.R;
+
+import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.R;
 
 import java.util.ArrayList;
-/*
-public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapter1.ViewHolder> {
-    private ArrayList<Pizza> array_pizza;
 
-    public RecyclerViewAdapter1(ArrayList<Pizza> arrP){
-        array_pizza = arrP;
+public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapter1.ViewHolder> {
+    private ArrayList<Dish> array_dish;
+
+    public RecyclerViewAdapter1(ArrayList<Dish> arrP){
+        array_dish = arrP;
     }
 
     @NonNull
@@ -27,6 +28,8 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
         return holder;
     }
 
+    //okay
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -34,7 +37,7 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     @Override
     public int getItemCount() {
-        return array_pizza.size();
+        return array_dish.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -50,4 +53,3 @@ public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapt
         }
     }
 }
- */

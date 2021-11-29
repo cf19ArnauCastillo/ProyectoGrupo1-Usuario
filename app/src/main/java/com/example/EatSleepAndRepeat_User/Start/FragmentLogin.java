@@ -1,6 +1,5 @@
-package com.example.EatSleepAndRepeat_User;
+package com.example.EatSleepAndRepeat_User.Start;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.EatSleepAndRepeat_User.MenuActivity;
+import com.example.EatSleepAndRepeat_User.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -92,6 +93,7 @@ public class FragmentLogin extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +104,7 @@ public class FragmentLogin extends Fragment {
         EditText password = view.findViewById(R.id.txtUsernameRegister);
         SignInButton signInButton = view.findViewById(R.id.sign_in_button);
 
-        setGooglePlusButtonText(signInButton, "Log in");
+        //setGooglePlusButtonText(signInButton, "Log in");
 
         /**
          * When there is a click on the "Login" button and the credentials are correct,
@@ -153,16 +155,16 @@ public class FragmentLogin extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == 900) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
+                Log.d("googleSignin", "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
+                Log.w("googleSignin", "Google sign in failed", e);
             }
         }
     }
@@ -173,6 +175,8 @@ public class FragmentLogin extends Fragment {
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
+        Log.d(TAG, "---------------------__>aqui");
+
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -192,6 +196,7 @@ public class FragmentLogin extends Fragment {
 
     }
 
+    /*
     protected void setGooglePlusButtonText(SignInButton signInButton,
                                            String buttonText) {
         for (int i = 0; i < signInButton.getChildCount(); i++) {
@@ -206,4 +211,6 @@ public class FragmentLogin extends Fragment {
             }
         }
     }
+
+     */
 }

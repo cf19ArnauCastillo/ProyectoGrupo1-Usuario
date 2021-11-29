@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Eat Sleep And Repeat</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -28,8 +28,21 @@
     <string name="txtCart">Cart</string>
     <string name="txtTotal">Total:</string>
     <string name="txtCheckout">Checkout</string>
+
     <!--Category-->
     <string name="txtCategories">Categories</string>
+    <string name="title_activity_categories">Categories_Activity</string>
+
+    <!--Tabs-->
+    <string name="tabAll">All</string>
+    <string name="tabPizzas">Pizzas</string>
+    <string name="tabStarters">Starters</string>
+    <string name="tabDesserts">Desserts</string>
+    <string name="tabDrinks">Drinks</string>
+    <string name="title_activity_tabbed">tabbed</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_category">CategoryActivity</string>
 
 
 </resources>

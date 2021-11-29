@@ -16,14 +16,17 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         // Initialize in home fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentCategoria()).commit();
 
         BottomNavigationView bottomNav = findViewById(R.id.main_menu);
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             switch (item.getItemId()){
-                case R.id.nav_menu:
+                case R.id.nav_home:
                     selectedFragment = new FragmentHome();
+                    break;
+                case R.id.nav_menu:
+                    selectedFragment = new FragmentCategoria();
                     break;
                 case R.id.nav_cart:
                     selectedFragment = new FragmentCarrito();

@@ -5,8 +5,9 @@ import java.io.Serializable;
 public class Dish implements Serializable {
     public String name;
     public String description;
-    public String type;
-    public int price;
+    public String category;
+    public double price;
+    public int id;
 
     public Dish(){
     }
@@ -14,7 +15,7 @@ public class Dish implements Serializable {
     public Dish(String name, String description, String type, int price) {
         this.name = name;
         this.description = description;
-        this.type = type;
+        this.category = type;
         this.price = price;
 
     }
@@ -35,15 +36,15 @@ public class Dish implements Serializable {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

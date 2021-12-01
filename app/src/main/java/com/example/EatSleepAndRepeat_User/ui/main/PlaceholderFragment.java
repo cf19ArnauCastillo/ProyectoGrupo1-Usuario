@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.EatSleepAndRepeat_User.R;
-import com.example.EatSleepAndRepeat_User.databinding.FragmentCategoryBinding;
+import com.example.EatSleepAndRepeat_User.databinding.FragmentProductLabelBinding;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -23,7 +23,7 @@ public class PlaceholderFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
-    private FragmentCategoryBinding binding;
+    private FragmentProductLabelBinding binding;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -49,7 +49,7 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        binding = FragmentCategoryBinding.inflate(inflater, container, false);
+        binding = FragmentProductLabelBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.sectionLabel;

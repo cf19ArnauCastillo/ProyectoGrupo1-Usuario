@@ -14,17 +14,17 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.EatSleepAndRepeat_User.ui.main.SectionsPagerAdapter;
-import com.example.EatSleepAndRepeat_User.databinding.ActivityCategoryBinding;
+import com.example.EatSleepAndRepeat_User.databinding.ActivityProductsBinding;
 
-public class CategoryActivity extends AppCompatActivity {
+public class ProductsActivity extends AppCompatActivity {
 
-    private ActivityCategoryBinding binding;
+    private ActivityProductsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityCategoryBinding.inflate(getLayoutInflater());
+        binding = ActivityProductsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());

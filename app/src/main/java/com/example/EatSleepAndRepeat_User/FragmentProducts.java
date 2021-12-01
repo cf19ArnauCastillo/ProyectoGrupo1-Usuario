@@ -10,19 +10,19 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentCategoria#newInstance} factory method to
+ * Use the {@link FragmentProducts#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentCategoria extends Fragment {
+public class FragmentProducts extends Fragment {
 
-    public FragmentCategoria() {
+    public FragmentProducts() {
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static FragmentCategoria newInstance(String param1, String param2) {
-        FragmentCategoria fragment = new FragmentCategoria();
+    public static FragmentProducts newInstance(String param1, String param2) {
+        FragmentProducts fragment = new FragmentProducts();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -38,6 +38,6 @@ public class FragmentCategoria extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_category, container, false);
+        return inflater.inflate(R.layout.activity_products, container, false);
     }
 }

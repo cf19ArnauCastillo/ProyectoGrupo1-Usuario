@@ -16,7 +16,7 @@ import android.view.View;
 import com.example.EatSleepAndRepeat_User.ui.main.SectionsPagerAdapter;
 import com.example.EatSleepAndRepeat_User.databinding.ActivityCategoryBinding;
 
-public class CategoryActivity extends AppCompatActivity {
+public class ProductsActivity extends AppCompatActivity {
 
     private ActivityCategoryBinding binding;
 

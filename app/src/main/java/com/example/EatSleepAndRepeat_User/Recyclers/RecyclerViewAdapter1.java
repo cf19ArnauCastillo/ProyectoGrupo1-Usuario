@@ -1,4 +1,4 @@
-package com.example.myapplication.Recyclers;
+package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

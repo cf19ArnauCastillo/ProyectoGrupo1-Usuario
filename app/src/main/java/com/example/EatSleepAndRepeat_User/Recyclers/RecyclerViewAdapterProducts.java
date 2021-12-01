@@ -1,4 +1,4 @@
-package com.example.myapplication.Recyclers;
+package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +13,17 @@ import com.example.EatSleepAndRepeat_User.R;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter1 extends RecyclerView.Adapter<RecyclerViewAdapter1.ViewHolder> {
+public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerViewAdapterProducts.ViewHolder> {
     private ArrayList<Dish> array_dish;
 
-    public RecyclerViewAdapter1(ArrayList<Dish> arrP){
+    public RecyclerViewAdapterProducts(ArrayList<Dish> arrP){
         array_dish = arrP;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_products, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

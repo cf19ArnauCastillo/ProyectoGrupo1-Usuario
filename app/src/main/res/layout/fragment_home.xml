@@ -30,7 +30,7 @@
             tools:layout_editor_absoluteX="39dp">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recylcer1"
+                android:id="@+id/recyclerHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"

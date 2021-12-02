@@ -16,7 +16,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/Precio"
+            android:id="@+id/txtPriceProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="25,00 €"
@@ -31,7 +31,7 @@
             app:layout_constraintVertical_bias="0.934" />
 
         <TextView
-            android:id="@+id/Descripcio"
+            android:id="@+id/txtDescriptionProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
@@ -43,7 +43,7 @@
             app:layout_constraintVertical_bias="0.816" />
 
         <TextView
-            android:id="@+id/NombrePizza"
+            android:id="@+id/txtNameProduct"
             android:layout_width="136dp"
             android:layout_height="22dp"
             android:text="Pizza Número 1"
@@ -58,7 +58,7 @@
             app:layout_constraintVertical_bias="0.737" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgProduct"
             android:layout_width="186dp"
             android:layout_height="144dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +70,7 @@
             app:srcCompat="@drawable/pizzanumbaone" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btnAddProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"

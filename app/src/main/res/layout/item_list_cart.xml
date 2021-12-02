@@ -17,7 +17,7 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/Precio"
+            android:id="@+id/txtPriceProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1kg, Price "
@@ -40,7 +40,7 @@
             app:srcCompat="@drawable/ic_logo" />
 
         <TextView
-            android:id="@+id/Descripcio"
+            android:id="@+id/txtDescriptionProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bell Pepper Red"
@@ -54,7 +54,7 @@
             app:layout_constraintVertical_bias="0.165" />
 
         <TextView
-            android:id="@+id/NombrePizza"
+            android:id="@+id/txtNameProduct"
             android:layout_width="52dp"
             android:layout_height="28dp"
             android:text="4.99€"

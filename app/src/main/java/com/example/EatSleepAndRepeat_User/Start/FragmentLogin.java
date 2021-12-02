@@ -67,8 +67,9 @@ public class FragmentLogin extends Fragment {
         super.onCreate(savedInstanceState);
         // Configure Google Sign In
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("890339539734-50vu60qkou7912h4t42lo72b5vjgrc3i.apps.googleusercontent.com")
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -78,7 +79,7 @@ public class FragmentLogin extends Fragment {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -91,7 +92,7 @@ public class FragmentLogin extends Fragment {
         if(currentUser != null  || account != null ){
             startMenu();
         }
-    }
+    }*/
 
 
     @Override
@@ -155,7 +156,7 @@ public class FragmentLogin extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == 900) {
+        if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase

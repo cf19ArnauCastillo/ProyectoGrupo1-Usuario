@@ -2,6 +2,7 @@ package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,6 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
     }
 
     @Override
@@ -41,15 +41,17 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView Textiño;
-        TextView Textiño1;
-        TextView Textiño2;
+        TextView name;
+        TextView desc;
+        TextView price;
+        ImageButton add;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            Textiño = itemView.findViewById(R.id.NombrePizza);
-            Textiño1 = itemView.findViewById(R.id.Descripcio);
-            Textiño2 = itemView.findViewById(R.id.Precio);
+            name = itemView.findViewById(R.id.txtNameProduct);
+            desc = itemView.findViewById(R.id.txtDescriptionProduct);
+            price = itemView.findViewById(R.id.txtPriceProduct);
+            add = itemView.findViewById(R.id.btnAddProduct);
         }
     }
 }

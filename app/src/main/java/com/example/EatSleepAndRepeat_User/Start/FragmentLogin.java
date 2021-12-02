@@ -79,7 +79,7 @@ public class FragmentLogin extends Fragment {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    /*@Override
+    @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -92,7 +92,7 @@ public class FragmentLogin extends Fragment {
         if(currentUser != null  || account != null ){
             startMenu();
         }
-    }*/
+    }
 
 
     @Override

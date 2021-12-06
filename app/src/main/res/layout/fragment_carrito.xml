@@ -48,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintCart">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
+                android:id="@+id/recyclerviewcarrito"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/black"

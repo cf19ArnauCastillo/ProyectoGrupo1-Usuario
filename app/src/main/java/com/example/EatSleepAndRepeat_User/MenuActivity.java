@@ -29,7 +29,7 @@ public class MenuActivity extends AppCompatActivity {
                     selectedFragment = new FragmentProducts();
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new FragmentCarrito();
+                    selectedFragment = new FragmentCart();
                     break;
                 case R.id.nav_settings:
                     selectedFragment = new FragmentSettings();

@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.EatSleepAndRepeat_User.FragmentCarrito;
+import com.example.EatSleepAndRepeat_User.FragmentCart;
 import com.example.EatSleepAndRepeat_User.FragmentProducts;
 import com.example.EatSleepAndRepeat_User.R;
 

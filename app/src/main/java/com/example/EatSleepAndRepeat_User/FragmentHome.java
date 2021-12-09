@@ -38,6 +38,7 @@ public class FragmentHome extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
             ArrayList<String> array_categories = new ArrayList<>();
             array_categories.add("Luke Skywalker");
             array_categories.add("Leia Organa");

@@ -2,84 +2,102 @@ package com.example.EatSleepAndRepeat_User.DB;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
 
 public class DBHelper {
     private static final String TAG = "DBHelper";
 
     // Instance  of the Firebase Database
-    DatabaseReference mDatabase;
 
-    public DBHelper(DatabaseReference mDatabase) {
-        this.mDatabase = mDatabase;
+    FirebaseDatabase db;
+    DatabaseReference refDish;
+    ArrayList<Dish> dishes;
+
+    public DBHelper() {
+        this.db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
+        this.refDish = db.getReference("dish");
+        dishes = new ArrayList<Dish>();
     }
+
+    public void readDishes(){
+
+        Log.i("entro", "------------_");
+        refDish.child("Drink").addListenerForSingleValueEvent(new ValueEventListener() {
+          @Override
+          public void onDataChange(DataSnapshot dataSnapshot) {
+              for (DataSnapshot ds : dataSnapshot.getChildren()){
+                  Dish dish = ds.getValue(Dish.class);
+                  dishes.add(dish);
+                  Log.i("prova", "------------------------------------" + dish.getName() + ds);
+              }
+
+              //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());
+
+          }
+
+          @Override
+          public void onCancelled(DatabaseError databaseError) {
+             // System.out.println("The read failed: " + databaseError.getCode());
+          }
+        });
+    }
+    public ArrayList<Dish> getDishes(){
+        readDishes();
+        return dishes;
+    }
+
 
     // Creates a new Dish object and adds it to the Database
     // This method also allows to update all the values from a dish element
-    public void addDish(String name, String category, String description, Double price) {
+    public void addDish(String name, String imageName, String category, String description, Double price) {
 
         //mDatabase = mDatabase.child("dish");
 
-        DatabaseReference pushedPostRef = mDatabase.child("dish").push();
+        DatabaseReference pushedPostRef = refDish.child("dish").push();
 
         String dishId = pushedPostRef.getKey();
         Log.i("testDB", "" + dishId);
 
-
-        Dish dish = new Dish(dishId,name,category,description,price);
-        mDatabase.child("dish").child(dishId).setValue(dish);
+        Dish dish = new Dish(dishId,imageName,category,name,description,price);
+        refDish.child("dish").child(dishId).setValue(dish);
     }
+
 
     // Replaces the name from a single dish element
     public void replaceName(Integer dishId, String newName) {
-        mDatabase.child("dish").child(String.valueOf(dishId)).child("name").setValue(newName);
+        refDish.child("dish").child(String.valueOf(dishId)).child("name").setValue(newName);
     }
 
     // Replaces the category from a single dish element
     public void replaceCategory(Integer dishIs, String newCategory) {
-        mDatabase.child("dish").child(String.valueOf(dishIs)).child("category").setValue(newCategory);
+        refDish.child("dish").child(String.valueOf(dishIs)).child("category").setValue(newCategory);
     }
 
     // Replaces the description from a single dish element
     public void replaceDescription(Integer dishId, String newDescription) {
-        mDatabase.child("dish").child(String.valueOf(dishId)).child("description").setValue(newDescription);
+        refDish.child("dish").child(String.valueOf(dishId)).child("description").setValue(newDescription);
     }
 
     // Replaces the price from a single dish element
     public void replacePrice(Integer dishId, Double newPrice) {
-        mDatabase.child("dish").child(String.valueOf(dishId)).child("price").setValue(newPrice);
+        refDish.child("dish").child(String.valueOf(dishId)).child("price").setValue(newPrice);
     }
 
     // Removes a values from a single dish element
     public void removeValue(Integer dishId, String type) {
-        mDatabase.child("dish").child(String.valueOf(dishId)).child(type).removeValue();
+        refDish.child("dish").child(String.valueOf(dishId)).child(type).removeValue();
     }
 
     // Removes a hole Dish element
     public void removeDish(Integer dishId) {
-        mDatabase.child("dish").child(String.valueOf(dishId)).removeValue();
+        refDish.child("dish").child(String.valueOf(dishId)).removeValue();
     }
 
     // Receives a DataSnapshot that contains the values from a specific location on the database
@@ -115,7 +133,6 @@ public class DBHelper {
                         }
                     }
                 });
-    }*/
-
-
+    }
+    */
 }

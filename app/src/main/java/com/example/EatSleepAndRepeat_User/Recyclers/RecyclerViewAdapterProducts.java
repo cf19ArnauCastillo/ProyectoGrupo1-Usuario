@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerViewAdapterProducts.ViewHolder> {
     private ArrayList<Dish> array_dish;
 
-    public RecyclerViewAdapterProducts(ArrayList<Dish> arrP){
-        array_dish = arrP;
+    public RecyclerViewAdapterProducts(ArrayList<Dish> dishes){
+        array_dish = dishes;
     }
 
     @NonNull
@@ -33,6 +33,10 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.name.setText(array_dish.get(position).getName());
+        holder.desc.setText(array_dish.get(position).getDescription());
+        String p = Double.toString(array_dish.get(position).getPrice());
+        holder.price.setText(p);
     }
 
     @Override

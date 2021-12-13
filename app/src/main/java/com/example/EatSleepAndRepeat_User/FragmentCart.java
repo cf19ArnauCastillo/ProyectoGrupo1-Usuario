@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.Classes.Orders;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
@@ -45,16 +46,12 @@ public class FragmentCart extends Fragment {
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
-        ArrayList<String> array_cart = new ArrayList<>();
-        array_cart.add("hola");
-        array_cart.add("hola");
-        array_cart.add("hola");
-        array_cart.add("hola");
-        array_cart.add("hola");
+        ArrayList<Orders> order = new ArrayList<>();
+
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCart);
-        RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(array_cart);
+        RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), order);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;

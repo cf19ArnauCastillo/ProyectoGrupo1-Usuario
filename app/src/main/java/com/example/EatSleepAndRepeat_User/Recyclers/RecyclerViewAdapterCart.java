@@ -1,4 +1,5 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
+import android.content.Context;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.EatSleepAndRepeat_User.Classes.Orders;
 import com.example.EatSleepAndRepeat_User.R;
 
 import java.util.ArrayList;
 public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAdapterCart.ViewHolder> {
-    private ArrayList<String> array_cart;
+    private ArrayList<Orders> order;
+    private Context context;
 
-    public RecyclerViewAdapterCart(ArrayList<String> arrA){
-        this.array_cart = arrA;
+    public RecyclerViewAdapterCart(Context context, ArrayList<Orders> arrA){
+        this.context = context;
+        this.order = arrA;
     }
     @NonNull
     @Override
@@ -31,7 +35,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
 
     @Override
     public int getItemCount() {
-        return array_cart.size();
+        return order.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

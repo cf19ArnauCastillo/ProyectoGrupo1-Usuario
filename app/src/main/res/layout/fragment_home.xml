@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintSearch2ç"
+            android:id="@+id/ConstraintSearch"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/red"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ConstraintSearch2ç"
+            app:layout_constraintTop_toBottomOf="@+id/ConstraintSearch"
             tools:layout_editor_absoluteX="39dp">
 
             <androidx.recyclerview.widget.RecyclerView

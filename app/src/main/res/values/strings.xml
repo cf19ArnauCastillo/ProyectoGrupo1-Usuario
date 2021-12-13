@@ -33,6 +33,9 @@
     <string name="txtCategories">Categories</string>
     <string name="title_activity_categories">Categories_Activity</string>
 
+    <!--Products-->
+    <string name="txtAddProducts">Add to cart</string>
+
     <!--Tabs-->
     <string name="tabAll">All</string>
     <string name="tabPizzas">Pizzas</string>

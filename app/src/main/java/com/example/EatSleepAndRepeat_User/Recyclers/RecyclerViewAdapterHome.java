@@ -1,5 +1,6 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,11 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAdapterHome.ViewHolder> {
     private ArrayList<Category> categories;
     Context context;
-    public RecyclerViewAdapterHome(ArrayList<Category> arrC){
+
+    public RecyclerViewAdapterHome(Context context, ArrayList<Category> arrC){
+        this.context = context;
         this.categories = arrC;
+        Log.i("categorias____________", "" + getItemCount());
     }
     @NonNull
     @Override
@@ -32,12 +36,12 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Category cat = new Category(categories.get(position));
 
-        holder.category.setText(cat.getCategoryName());
-        //Glide.with(context).load(cat.getImagePath()).into(holder.image);
+        Log.i("Name____________", ""+categories.get(position).getCategoryName());
+        holder.category.setText(categories.get(position).getCategoryName());
+        Glide.with(context).load(categories.get(position).getImagePath()).into(holder.image);
+        Log.i("Image____________", ""+categories.get(position).getImagePath());
         // TODO set image category
-        // holder.category.
     }
 
     @Override

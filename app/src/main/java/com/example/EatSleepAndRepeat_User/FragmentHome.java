@@ -69,7 +69,7 @@ public class FragmentHome extends Fragment {
                     Log.i("desdeHome", "------------------------------------" + cat.getCategoryName() + ds);
                 }
 
-                RecyclerViewAdapterHome adapter = new RecyclerViewAdapterHome(categories);
+                RecyclerViewAdapterHome adapter = new RecyclerViewAdapterHome(getContext(), categories);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 

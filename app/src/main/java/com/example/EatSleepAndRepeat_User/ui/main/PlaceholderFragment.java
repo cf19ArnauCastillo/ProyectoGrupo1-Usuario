@@ -72,14 +72,14 @@ public class PlaceholderFragment extends Fragment {
 
 
         if(Integer.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)) == 0){
-            array.add(new Dish("1","hola", "all", "all", 25));
-            array.add(new Dish("1","adeu", "all", "all", 25));
+            array.add(new Dish("1","all", "all", "all", 25));
+            array.add(new Dish("1","all", "all", "all", 25));
             array.add(new Dish("1","all", "all", "all", 25));
             array.add(new Dish("1","all", "all", "all", 25));
             Log.i("IF1 ", ARG_SECTION_NUMBER );
         } else if (ARG_SECTION_NUMBER.equals("1")){
-            array.add(new Dish("1","hola", "all", "all", 25));
-            array.add(new Dish("1","adeu", "all", "all", 25));
+            array.add(new Dish("1","all", "all", "all", 25));
+            array.add(new Dish("1","all", "all", "all", 25));
             array.add(new Dish("1","all", "all", "all", 25));
             array.add(new Dish("1","all", "all", "all", 25));
         }

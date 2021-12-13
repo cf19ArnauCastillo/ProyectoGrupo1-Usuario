@@ -2,27 +2,27 @@ package com.example.EatSleepAndRepeat_User.Classes;
 
 import java.io.Serializable;
 
-public class Comanda implements Serializable {
-    public String Id;
+public class Orders implements Serializable {
+    public String id;
     public String name;
     public double price;
-    public String Estado;
+    public String status;
 
-    public Comanda(){
+    public Orders(){
     }
 
-    public Comanda(String Id, String name, double price, String Estado) {
-        this.Id = Id;
+    public Orders(String id, String name, double price, String status) {
+        this.id = id;
         this.name = name;
         this.price = price;
-        this.Estado = Estado;
+        this.status = status;
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(String Id) { this.Id = Id; }
+    public void setId(String Id) { this.id = Id; }
 
     public String getName() {
         return name;
@@ -40,11 +40,11 @@ public class Comanda implements Serializable {
         this.price = price;
     }
 
-    public String getEstado() {
-        return Estado;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

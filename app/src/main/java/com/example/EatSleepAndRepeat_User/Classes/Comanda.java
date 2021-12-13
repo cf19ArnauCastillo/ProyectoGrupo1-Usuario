@@ -6,7 +6,7 @@ public class Comanda implements Serializable {
     public String Id;
     public String name;
     public double price;
-    public String Estado;
+    public String Estado;//que sea de base "recibido"
 
     public Comanda(){
     }

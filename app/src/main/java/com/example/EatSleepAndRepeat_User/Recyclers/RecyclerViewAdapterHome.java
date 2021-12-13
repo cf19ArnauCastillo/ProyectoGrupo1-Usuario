@@ -41,8 +41,6 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.category.setText(categories.get(position).getCategoryName());
-
-        //
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference dateRef = storageRef.child(categories.get(position).getImagePath());
         dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){

@@ -98,7 +98,7 @@ public class PlaceholderFragment extends Fragment {
                     }
 
                     //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());
-                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(array);
+                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
                     recyclerProducts.setAdapter(adapter);
                     recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
                 }

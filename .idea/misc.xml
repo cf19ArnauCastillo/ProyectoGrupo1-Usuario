@@ -22,21 +22,22 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_start.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_start.xml" value="0.453646477132262" />
         <entry key="app/src/main/res/layout/activity_tabbed.xml" value="0.24791666666666667" />
-        <entry key="app/src/main/res/layout/fragment_carrito.xml" value="0.47463516330785266" />
-        <entry key="app/src/main/res/layout/fragment_categoria.xml" value="0.3066123188405797" />
+        <entry key="app/src/main/res/layout/fragment_carrito.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_categoria.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_categories_.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.24791666666666667" />
-        <entry key="app/src/main/res/layout/fragment_food_detail.xml" value="0.18802083333333333" />
+        <entry key="app/src/main/res/layout/fragment_carrito.xml" value="0.47463516330785266" />
+        <entry key="app/src/main/res/layout/fragment_categoria.xml" value="0.3066123188405797" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_tabbed.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/item_list.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/item_list2.xml" value="0.3066123188405797" />
         <entry key="app/src/main/res/layout/item_list_cat.xml" value="0.24791666666666667" />
+        <entry key="app/src/main/res/layout/item_list2.xml" value="0.3066123188405797" />
         <entry key="app/src/main/res/layout/login_screen.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/register_screen.xml" value="0.2" />
         <entry key="app/src/main/res/menu/bottom_navegation.xml" value="0.19322916666666667" />

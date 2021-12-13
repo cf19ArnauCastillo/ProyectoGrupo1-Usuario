@@ -3,6 +3,7 @@ package com.example.EatSleepAndRepeat_User.Classes;
 import java.io.Serializable;
 
 public class Dish implements Serializable {
+    public String dishId;
     public String name;
     public String description;
     public String category;
@@ -12,7 +13,8 @@ public class Dish implements Serializable {
     public Dish(){
     }
 
-    public Dish(String name, String description, String type, int price) {
+    public Dish(String dishId, String name, String description, String type, double price) {
+        this.dishId = dishId;
         this.name = name;
         this.description = description;
         this.category = type;
@@ -48,7 +50,15 @@ public class Dish implements Serializable {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(String dishId) {
+        this.dishId = dishId;
     }
 }

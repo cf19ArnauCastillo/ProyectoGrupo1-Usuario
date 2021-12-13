@@ -1,21 +1,25 @@
 package com.example.EatSleepAndRepeat_User.ui.main;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.EatSleepAndRepeat_User.FragmentCarrito;
+import com.example.EatSleepAndRepeat_User.FragmentCart;
+import com.example.EatSleepAndRepeat_User.FragmentProducts;
 import com.example.EatSleepAndRepeat_User.R;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tabAll, R.string.tabPizzas, R.string.tabStarters, R.string.tabDesserts, R.string.tabDrinks};
@@ -28,27 +32,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
 
+        Log.i("PROD TEXT" , "----------_>" + mContext.getString(TAB_TITLES[position]));
 
-        switch (position){
-            case 0:
-                fragment = new FragmentCarrito();
-                break;
-            case 1:
-                fragment = new FragmentCarrito();
-                break;
-            case 2:
-                fragment = new FragmentCarrito();
-                break;
-            case 3:
-                fragment = new FragmentCarrito();
-                break;
-            case 4:
-                fragment = new FragmentCarrito();
-                break;
-        }
-        return PlaceholderFragment.newInstance(position + 1);
+        return PlaceholderFragment.newInstance(position);
     }
 
     @Nullable

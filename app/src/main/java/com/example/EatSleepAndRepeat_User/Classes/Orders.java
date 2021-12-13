@@ -6,7 +6,7 @@ public class Orders implements Serializable {
     public String id;
     public String name;
     public double price;
-    public String status;
+    public String status; //que sea de base "recibido"
 
     public Orders(){
     }

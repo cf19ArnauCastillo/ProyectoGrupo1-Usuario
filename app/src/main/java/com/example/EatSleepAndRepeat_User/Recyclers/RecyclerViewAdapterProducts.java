@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -76,9 +75,9 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.txtNameProduct);
-            desc = itemView.findViewById(R.id.txtDescriptionProduct);
-            price = itemView.findViewById(R.id.txtPriceProduct);
-            add = itemView.findViewById(R.id.btnAdd);
+            desc = itemView.findViewById(R.id.txtProductCart);
+            price = itemView.findViewById(R.id.txtAmount);
+            add = itemView.findViewById(R.id.btnAddCart);
             image = itemView.findViewById(R.id.imgProduct);
         }
     }

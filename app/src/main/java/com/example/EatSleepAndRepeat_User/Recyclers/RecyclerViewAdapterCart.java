@@ -3,12 +3,12 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.R;
 
 import java.util.ArrayList;
@@ -35,23 +35,23 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textView1;
-        TextView textView2;
-        TextView textView3;
-        TextView textView4;
-        //Image text1;
-        //Image text2;
-        //Image text3;
+        ImageView image;
+        TextView name;
+        TextView desc;
+        ImageView add;
+        ImageView remove;
+        TextView amount;
+        TextView delete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView1 = itemView.findViewById(R.id.txtDescriptionProduct);
-            textView2 = itemView.findViewById(R.id.txtPriceProduct);
-            textView3 = itemView.findViewById(R.id.cantidad);
-            textView4 = itemView.findViewById(R.id.txtNameProduct);
-            //text1 = itemView.findViewById(R.id.imatgePizza);
-            //text2 = itemView.findViewById(R.id.restar);
-            //text3 = itemView.findViewById(R.id.sumar);
+            image = itemView.findViewById(R.id.imgCart);
+            name = itemView.findViewById(R.id.txtProductCart);
+            desc = itemView.findViewById(R.id.txtDescriptionCart);
+            add = itemView.findViewById(R.id.btnAddCart);
+            remove = itemView.findViewById(R.id.btnRemoveCart);
+            amount = itemView.findViewById(R.id.txtAmount);
+            delete = itemView.findViewById(R.id.btnDelete);
         }
     }
 

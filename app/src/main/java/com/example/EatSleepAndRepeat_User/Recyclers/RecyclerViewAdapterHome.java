@@ -1,5 +1,6 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,11 @@ import com.bumptech.glide.Glide;
 import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.R;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAdapterHome.ViewHolder> {
@@ -36,12 +40,17 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        Log.i("Name____________", ""+categories.get(position).getCategoryName());
         holder.category.setText(categories.get(position).getCategoryName());
-        Glide.with(context).load(categories.get(position).getImagePath()).into(holder.image);
-        Log.i("Image____________", ""+categories.get(position).getImagePath());
-        // TODO set image category
+
+        //
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference dateRef = storageRef.child(categories.get(position).getImagePath());
+        dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
+            @Override
+            public void onSuccess(Uri downloadUrl){
+                Glide.with(context).load(downloadUrl).into(holder.image);
+            }
+        });
     }
 
     @Override

@@ -16,6 +16,9 @@ public class Category implements Serializable {
         this.imagePath = imagePath;
     }
 
+    public Category(Category category) {
+    }
+
     public String getCategoryName() {
         return categoryName;
     }

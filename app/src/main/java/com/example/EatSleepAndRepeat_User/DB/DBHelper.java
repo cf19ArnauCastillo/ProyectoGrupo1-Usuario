@@ -2,7 +2,13 @@ package com.example.EatSleepAndRepeat_User.DB;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+
+import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
+import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,24 +24,48 @@ public class DBHelper {
 
     FirebaseDatabase db;
     DatabaseReference refDish;
+    DatabaseReference refCat;
     ArrayList<Dish> dishes;
+    ArrayList<Category> categories;
 
     public DBHelper() {
         this.db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         this.refDish = db.getReference("dish");
+        this.refCat = db.getReference("category");
         dishes = new ArrayList<Dish>();
     }
 
+    public void readCategories(){
+        refCat.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    Category cat = ds.getValue(Category.class);
+                    categories.add(cat);
+                }
+
+                //TODO este proceso es async: falta pasar la lista de categorias
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
     public void readDishes(){
 
-        Log.i("entro", "------------_");
+        Log.i("entro desde DBHelper", "------------_");
         refDish.child("Drink").addListenerForSingleValueEvent(new ValueEventListener() {
           @Override
           public void onDataChange(DataSnapshot dataSnapshot) {
               for (DataSnapshot ds : dataSnapshot.getChildren()){
                   Dish dish = ds.getValue(Dish.class);
                   dishes.add(dish);
-                  Log.i("prova", "------------------------------------" + dish.getName() + ds);
+                  Log.i("DBHelper onDataChange", "------------------------------------" + dish.getName() + ds);
               }
 
               //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());

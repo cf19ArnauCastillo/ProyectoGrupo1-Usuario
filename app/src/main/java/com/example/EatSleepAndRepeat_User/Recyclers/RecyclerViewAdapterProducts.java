@@ -61,13 +61,14 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
                 Glide.with(context).load(downloadUrl).into(holder.image);
             }
         });
-
+        // Cuando le clickas a la imagen te lleva al food detail fragment
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Guardas la infomacion en una "caja"
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("dish", dishes.get(position));
-
+                //Mandas la informacion a la nueva pantalla
                 AppCompatActivity app = (AppCompatActivity) v.getContext();
                 FragmentFoodDetail fragmentFoodDetail = new FragmentFoodDetail();
                 fragmentFoodDetail.setArguments(bundle);

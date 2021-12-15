@@ -5,16 +5,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.FragmentFoodDetail;
 import com.example.EatSleepAndRepeat_User.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -59,6 +62,21 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             }
         });
 
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("dish", dishes.get(position));
+
+                AppCompatActivity app = (AppCompatActivity) v.getContext();
+                FragmentFoodDetail fragmentFoodDetail = new FragmentFoodDetail();
+                fragmentFoodDetail.setArguments(bundle);
+
+                app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentFoodDetail).commit();
+            }
+        });
+
+
     }
 
     @Override
@@ -72,6 +90,9 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         TextView price;
         ImageView add;
         ImageView image;
+        Button btnRemove;
+        Button btnAdd;
+        Button btnAddProduct;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

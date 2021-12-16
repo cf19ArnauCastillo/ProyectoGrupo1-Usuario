@@ -88,7 +88,7 @@ public class PlaceholderFragment extends Fragment {
             db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
             refDish = db.getReference("dish");
 
-            refDish.child("Drink").addListenerForSingleValueEvent(new ValueEventListener() {
+            refDish.child("Pizzas").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()){

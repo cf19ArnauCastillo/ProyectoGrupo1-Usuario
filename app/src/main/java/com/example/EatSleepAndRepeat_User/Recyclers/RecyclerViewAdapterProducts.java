@@ -1,12 +1,16 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,10 +73,36 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             public void onClick(View view) {
                 CartListDBHelper cartListDBHelper = new CartListDBHelper(context);
                 SQLiteDatabase db = cartListDBHelper.getWritableDatabase();
-                CartList item = new CartList(dishes.get(position).getName(), dishes.get(position).getDescription(), holder.txtNumber.getText(), dishes.get(position).getPrice());
+                CartList item = new CartList(dishes.get(position).getName(), dishes.get(position).getDescription(), holder.txtNumber.getText().toString(), Double.toString(dishes.get(position).getPrice()));
+
+                cartListDBHelper.insertContact(db, item);
 
             }
         });
+
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(holder.txtNumber.getText().toString())+1;
+
+                holder.txtNumber.setText(String.valueOf(quantity));
+
+            }
+        });
+
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(holder.txtNumber.getText().toString())-1;
+                if(quantity<=1){
+                    quantity = 1;
+                }
+
+                holder.txtNumber.setText(String.valueOf(quantity));
+
+            }
+        });
+
     }
 
     @Override
@@ -85,6 +115,7 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         TextView desc;
         TextView price;
         ImageView add;
+        ImageView remove;
         ImageView image;
         Button btnAddProduct;
         TextView txtNumber;
@@ -95,9 +126,13 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             desc = itemView.findViewById(R.id.txtDescriptionProduct);
             price = itemView.findViewById(R.id.txtPriceProduct);
             add = itemView.findViewById(R.id.btnAdd);
+            remove = itemView.findViewById(R.id.btnRemove);
             image = itemView.findViewById(R.id.imgProduct);
             btnAddProduct = itemView.findViewById(R.id.btnAddProduct);
             txtNumber = itemView.findViewById(R.id.txtNumber);
         }
     }
+
+
+
 }

@@ -72,8 +72,10 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             @Override
             public void onClick(View view) {
                 CartListDBHelper cartListDBHelper = new CartListDBHelper(context);
+                cartListDBHelper.delete();
                 SQLiteDatabase db = cartListDBHelper.getWritableDatabase();
-                CartList item = new CartList(dishes.get(position).getName(), dishes.get(position).getDescription(), holder.txtNumber.getText().toString(), Double.toString(dishes.get(position).getPrice()));
+                //dishes.get(position).getDescription()
+                CartList item = new CartList(dishes.get(position).getName(), "a", holder.txtNumber.getText().toString(), Double.toString(dishes.get(position).getPrice()));
 
                 cartListDBHelper.insertContact(db, item);
 

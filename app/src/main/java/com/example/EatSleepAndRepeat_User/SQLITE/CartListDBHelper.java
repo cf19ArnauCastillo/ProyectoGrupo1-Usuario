@@ -16,7 +16,12 @@ public class CartListDBHelper extends SQLiteOpenHelper{
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "DBcart.db";
 
-    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + "(" + CartListContacts.ListCart.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CartListContacts.ListCart.COLUMN_NAME_TITLE + " TEXT)";
+    private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + "("
+            + CartListContacts.ListCart.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + CartListContacts.ListCart.COLUMN_NAME_TITLE
+            + " TEXT, "+CartListContacts.ListCart.COLUMN_PRICE
+            + " TEXT, "+CartListContacts.ListCart.COLUMN_QUANTITY
+            + " TEXT, "+CartListContacts.ListCart.COLUMN_DESCRIPTION_TITLE+" TEXT)";
 
 
     public CartListDBHelper(Context context) {
@@ -41,6 +46,9 @@ public class CartListDBHelper extends SQLiteOpenHelper{
 
             //Insert the incidence getting all values
             values.put(CartListContacts.ListCart.COLUMN_NAME_TITLE, c.getNom());
+            values.put(CartListContacts.ListCart.COLUMN_PRICE, c.getPrecio());
+            values.put(CartListContacts.ListCart.COLUMN_QUANTITY, c.getCantidad());
+            values.put(CartListContacts.ListCart.COLUMN_DESCRIPTION_TITLE, c.getDescripcion());
 
             db.insert(TABLE_NAME, null, values);
         }else{

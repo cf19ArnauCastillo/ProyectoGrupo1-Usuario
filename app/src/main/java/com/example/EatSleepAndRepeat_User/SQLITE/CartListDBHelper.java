@@ -67,7 +67,7 @@ public class CartListDBHelper extends SQLiteOpenHelper{
 
         String GETNAMES = "SELECT * FROM " + TABLE_NAME;
 
-        if(db!=null)
+      /*  if(db!=null)
         {
             Cursor cursor = db.rawQuery(GETNAMES, null);
             cursor.moveToFirst();
@@ -81,7 +81,29 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             cursor.close();
         }
 
+       */
+
+        if(db!=null)
+        {
+            Cursor cursor = db.query(TABLE_NAME, new String[]{"name","price","quantity","description"},null,null,null,null;
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast())
+            {
+                String nom = cursor.getString(0);
+
+                //Crear un objeto CartList con los valores de la consulta
+                //Añadir este objeto al array list
+
+                //array_noms.add(new String(nom));
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+
         return array_noms;
     }
+
+
 
 }

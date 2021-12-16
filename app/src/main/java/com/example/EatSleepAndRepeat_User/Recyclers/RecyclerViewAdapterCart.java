@@ -1,4 +1,5 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
+import android.icu.text.Transliterator;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.etiquetaNom.setText(array_cart.get(position));
     }
 
     @Override
@@ -34,22 +36,8 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
         return array_cart.size();
     }
 
-    /*
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView textView1;
-        TextView textView2;
-        TextView textView3;
-        TextView textView4;
-        //Image text1;
-        //Image text2;
-        //Image text3;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
 
-        }
-    }
-    */
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView etiquetaNom;

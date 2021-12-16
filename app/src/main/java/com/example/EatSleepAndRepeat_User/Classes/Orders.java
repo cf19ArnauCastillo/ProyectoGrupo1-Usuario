@@ -1,50 +1,36 @@
 package com.example.EatSleepAndRepeat_User.Classes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Orders implements Serializable {
-    public String id;
-    public String name;
-    public double price;
-    public String status; //que sea de base "recibido"
+    public String user;
+    public ArrayList<ItemCart> products;
 
-    public Orders(){
+
+    public Orders() {
     }
 
-    public Orders(String id, String name, double price, String status) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.status = status;
+    public Orders(String user, ArrayList<ItemCart> products) {
+        this.user = user;
+        this.products = products;
     }
 
-    public String getId() {
-        return id;
+    public String getUser() {
+        return user;
     }
 
-    public void setId(String Id) { this.id = Id; }
-
-    public String getName() {
-        return name;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public ArrayList<ItemCart> getProducts() {
+        return products;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setProducts(ArrayList<ItemCart> products) {
+        this.products = products;
     }
 }
+
+

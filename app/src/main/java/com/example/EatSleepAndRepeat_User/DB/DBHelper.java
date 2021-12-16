@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
+import com.example.EatSleepAndRepeat_User.Classes.Orders;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,7 @@ public class DBHelper {
     FirebaseDatabase db;
     DatabaseReference refDish;
     DatabaseReference refCat;
+    DatabaseReference refOrders;
     ArrayList<Dish> dishes;
     ArrayList<Category> categories;
 
@@ -32,6 +35,8 @@ public class DBHelper {
         this.db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         this.refDish = db.getReference("dish");
         this.refCat = db.getReference("category");
+        this.refOrders = db.getReference("orders");
+
         dishes = new ArrayList<Dish>();
     }
 
@@ -148,6 +153,30 @@ public class DBHelper {
         };
         mDishReference.addValueEventListener(dishListener);
     }
+
+    public void addOrder() {
+
+        //mDatabase = mDatabase.child("dish");
+
+        DatabaseReference pushedPostRef = refOrders.child("orders").push();
+
+        String orderId = pushedPostRef.getKey();
+        Log.i("testDB", "" + orderId);
+
+
+        Dish dish = new Dish("-MpwFyCfweiNw281SYwu","Appetizer_2021_12_02_18_49_22","Appetizer","bravas","Esto son unas buenas bravas",5.99);
+        ItemCart cart = new ItemCart(dish, 2);
+
+        ArrayList<ItemCart> items = new ArrayList<ItemCart>();
+        items.add(cart);
+        items.add(cart);
+        items.add(cart);
+
+        Orders order = new Orders("ariadna", items);
+
+        refOrders.child(orderId).setValue(order);
+    }
+
     /*public void getAllDishes(){
         db.collection("dish")
                 .get()

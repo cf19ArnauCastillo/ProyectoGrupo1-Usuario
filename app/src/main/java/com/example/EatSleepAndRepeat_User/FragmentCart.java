@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.Classes.Orders;
+import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 public class FragmentCart extends Fragment {
 
+    DBHelper db = new DBHelper();
     public FragmentCart() {
         // Required empty public constructor
     }
@@ -54,6 +57,14 @@ public class FragmentCart extends Fragment {
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), order);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        Button add = view.findViewById(R.id.addOrder);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.addOrder();
+            }
+        });
         return view;
     }
 }

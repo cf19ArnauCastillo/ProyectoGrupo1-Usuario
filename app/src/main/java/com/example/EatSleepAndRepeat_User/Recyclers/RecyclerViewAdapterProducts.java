@@ -57,7 +57,6 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
                 Glide.with(context).load(downloadUrl).into(holder.image);
             }
         });
-
     }
 
     @Override

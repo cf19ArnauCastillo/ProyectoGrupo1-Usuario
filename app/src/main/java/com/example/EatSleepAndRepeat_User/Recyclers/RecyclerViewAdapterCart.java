@@ -4,6 +4,7 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
     }
 
     @Override
@@ -46,6 +48,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
         ImageView remove;
         TextView amount;
         TextView delete;
+        Button order;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +59,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             remove = itemView.findViewById(R.id.btnRemoveCart);
             amount = itemView.findViewById(R.id.txtAmount);
             delete = itemView.findViewById(R.id.btnDelete);
+            order = itemView.findViewById(R.id.addOrder);
         }
     }
 

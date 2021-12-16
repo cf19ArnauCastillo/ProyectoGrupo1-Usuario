@@ -101,6 +101,8 @@ public class PlaceholderFragment extends Fragment {
                     RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
                     recyclerProducts.setAdapter(adapter);
                     recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+
                 }
 
                 @Override

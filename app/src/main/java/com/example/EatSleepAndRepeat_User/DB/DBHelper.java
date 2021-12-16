@@ -3,21 +3,22 @@ package com.example.EatSleepAndRepeat_User.DB;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
-import com.example.EatSleepAndRepeat_User.Classes.Orders;
-import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
-import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
+import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class DBHelper {
     private static final String TAG = "DBHelper";
@@ -35,7 +36,7 @@ public class DBHelper {
         this.db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         this.refDish = db.getReference("dish");
         this.refCat = db.getReference("category");
-        this.refOrders = db.getReference("orders");
+        this.refOrders = db.getReference("order");
 
         dishes = new ArrayList<Dish>();
     }
@@ -158,13 +159,16 @@ public class DBHelper {
 
         //mDatabase = mDatabase.child("dish");
 
-        DatabaseReference pushedPostRef = refOrders.child("orders").push();
+        DatabaseReference pushedPostRef = refOrders.child("order").push();
 
         String orderId = pushedPostRef.getKey();
         Log.i("testDB", "" + orderId);
 
 
         Dish dish = new Dish("-MpwFyCfweiNw281SYwu","Appetizer_2021_12_02_18_49_22","Appetizer","bravas","Esto son unas buenas bravas",5.99);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String strDate = dateFormat.format(date);
         ItemCart cart = new ItemCart(dish, 2);
 
         ArrayList<ItemCart> items = new ArrayList<ItemCart>();
@@ -172,7 +176,7 @@ public class DBHelper {
         items.add(cart);
         items.add(cart);
 
-        Orders order = new Orders("ariadna", items);
+        Order order = new Order("ariadna", items, "Received", strDate);
 
         refOrders.child(orderId).setValue(order);
     }

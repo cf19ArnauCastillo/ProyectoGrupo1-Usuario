@@ -3,7 +3,6 @@ package com.example.EatSleepAndRepeat_User;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,12 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.EatSleepAndRepeat_User.Classes.Dish;
-import com.example.EatSleepAndRepeat_User.Classes.Orders;
+import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
-import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
-import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -49,7 +45,7 @@ public class FragmentCart extends Fragment {
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
-        ArrayList<Orders> order = new ArrayList<>();
+        ArrayList<Order> order = new ArrayList<>();
 
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -58,7 +54,7 @@ public class FragmentCart extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Button add = view.findViewById(R.id.addOrder);
+        Button add = view.findViewById(R.id.removeOrder);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

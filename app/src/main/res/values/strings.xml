@@ -29,6 +29,9 @@
     <string name="txtTotal">Total:</string>
     <string name="txtCheckout">Checkout</string>
 
+    <!-- Orders -->
+    <string name="Orders">Orders</string>
+
     <!--Category-->
     <string name="txtCategories">Categories</string>
     <string name="title_activity_categories">Categories_Activity</string>

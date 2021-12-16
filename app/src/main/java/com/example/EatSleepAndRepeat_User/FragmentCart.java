@@ -3,7 +3,6 @@ package com.example.EatSleepAndRepeat_User;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,10 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.EatSleepAndRepeat_User.Classes.Dish;
-import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
-import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -53,7 +49,7 @@ public class FragmentCart extends Fragment {
         array_cart.add("hola");
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCart);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerOrder);
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(array_cart);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

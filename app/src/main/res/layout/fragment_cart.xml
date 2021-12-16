@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintCart"
+            android:id="@+id/constraintOrders"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@color/red"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/titleCart"
+                android:id="@+id/titleOrders"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bold"
@@ -45,10 +45,10 @@
             app:layout_constraintBottom_toTopOf="@+id/constraintButtomsCarts"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintCart">
+            app:layout_constraintTop_toBottomOf="@+id/constraintOrders">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewCart"
+                android:id="@+id/recyclerOrder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/black"

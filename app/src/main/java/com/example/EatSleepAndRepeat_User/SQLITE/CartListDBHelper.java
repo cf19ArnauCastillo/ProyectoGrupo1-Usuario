@@ -62,12 +62,11 @@ public class CartListDBHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public ArrayList<String> getAllData(SQLiteDatabase db){
+    public static ArrayList<String> getAllData(SQLiteDatabase db){
         ArrayList<String> array_noms = new ArrayList<>();
 
         String GETNAMES = "SELECT * FROM " + TABLE_NAME;
 
-        db = getReadableDatabase();
         if(db!=null)
         {
             Cursor cursor = db.rawQuery(GETNAMES, null);

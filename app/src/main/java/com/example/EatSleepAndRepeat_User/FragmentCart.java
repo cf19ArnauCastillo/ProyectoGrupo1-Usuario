@@ -1,5 +1,6 @@
 package com.example.EatSleepAndRepeat_User;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,8 +24,16 @@ import java.util.ArrayList;
 
 public class FragmentCart extends Fragment {
 
+    private CartListDBHelper dbHelper;
+    private SQLiteDatabase db;
+
     public FragmentCart() {
         // Required empty public constructor
+    }
+
+    public FragmentCart(CartListDBHelper dbHelper, SQLiteDatabase db) {
+        this.dbHelper = dbHelper;
+        this.db = db;
     }
 
     public static FragmentCart newInstance(String param1, String param2) {
@@ -32,6 +42,7 @@ public class FragmentCart extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,18 +56,15 @@ public class FragmentCart extends Fragment {
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
-        ArrayList<String> array_cart = new ArrayList<>();
-        array_cart.add("hola");
-        array_cart.add("hola");
-        array_cart.add("hola");
-        array_cart.add("hola");
-        array_cart.add("hola");
+
+        ArrayList<String> array_cart = CartListDBHelper.getAllData(db);
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCart);
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(array_cart);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return view;
     }
 }

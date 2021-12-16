@@ -34,6 +34,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
         return array_cart.size();
     }
 
+    /*
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView1;
         TextView textView2;
@@ -45,14 +46,23 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView1 = itemView.findViewById(R.id.txtDescriptionProduct2);
-            textView2 = itemView.findViewById(R.id.txtPriceProduct2);
-            textView3 = itemView.findViewById(R.id.txtNumber2);
-            textView4 = itemView.findViewById(R.id.txtNameProduct2);
 
-            //text1 = itemView.findViewById(R.id.imatgePizza);
-            //text2 = itemView.findViewById(R.id.restar);
-            //text3 = itemView.findViewById(R.id.sumar);
+        }
+    }
+    */
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView etiquetaNom;
+        TextView etiquetaNom2;
+        TextView etiquetaNom3;
+        TextView etiquetaNom4;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            etiquetaNom = itemView.findViewById(R.id.txtNameProduct2);
+            etiquetaNom2 = itemView.findViewById(R.id.txtPriceProduct2);
+            etiquetaNom3 = itemView.findViewById(R.id.txtNumber2);
+            etiquetaNom4 = itemView.findViewById(R.id.txtDescriptionProduct2);
         }
     }
 

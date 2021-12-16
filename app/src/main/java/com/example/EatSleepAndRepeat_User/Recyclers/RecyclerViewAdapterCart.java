@@ -45,10 +45,11 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView1 = itemView.findViewById(R.id.txtDescriptionProduct);
-            textView2 = itemView.findViewById(R.id.txtPriceProduct);
-            textView3 = itemView.findViewById(R.id.cantidad);
-            textView4 = itemView.findViewById(R.id.txtNameProduct);
+            textView1 = itemView.findViewById(R.id.txtDescriptionProduct2);
+            textView2 = itemView.findViewById(R.id.txtPriceProduct2);
+            textView3 = itemView.findViewById(R.id.txtNumber2);
+            textView4 = itemView.findViewById(R.id.txtNameProduct2);
+
             //text1 = itemView.findViewById(R.id.imatgePizza);
             //text2 = itemView.findViewById(R.id.restar);
             //text3 = itemView.findViewById(R.id.sumar);

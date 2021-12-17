@@ -19,10 +19,11 @@ public class CartListDBHelper extends SQLiteOpenHelper{
 
     private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_NAME + "("
             + CartListContacts.ListCart.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + CartListContacts.ListCart.COLUMN_NAME_TITLE
-            + " TEXT, "+CartListContacts.ListCart.COLUMN_PRICE
-            + " TEXT, "+CartListContacts.ListCart.COLUMN_QUANTITY
-            + " TEXT, "+CartListContacts.ListCart.COLUMN_DESCRIPTION_TITLE+" TEXT)";
+            + CartListContacts.ListCart.COLUMN_NAME + " TEXT, "
+            + CartListContacts.ListCart.COLUMN_PRICE + " TEXT, "
+            + CartListContacts.ListCart.COLUMN_QUANTITY + " TEXT, "
+            + CartListContacts.ListCart.COLUMN_IMAGE + " INTEGER, "
+            + CartListContacts.ListCart.COLUMN_DESCRIPTION+" TEXT)";
 
 
     public CartListDBHelper(Context context) {
@@ -46,10 +47,11 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             ContentValues values = new ContentValues();
 
             //Insert the incidence getting all values
-            values.put(CartListContacts.ListCart.COLUMN_NAME_TITLE, c.getNom());
-            values.put(CartListContacts.ListCart.COLUMN_PRICE, c.getPrecio());
-            values.put(CartListContacts.ListCart.COLUMN_QUANTITY, c.getCantidad());
-            values.put(CartListContacts.ListCart.COLUMN_DESCRIPTION_TITLE, c.getDescripcion());
+            values.put(CartListContacts.ListCart.COLUMN_NAME, c.getName());
+            values.put(CartListContacts.ListCart.COLUMN_PRICE, c.getPrice());
+            values.put(CartListContacts.ListCart.COLUMN_QUANTITY, c.getQuantity());
+            values.put(CartListContacts.ListCart.COLUMN_DESCRIPTION, c.getDescription());
+            values.put(CartListContacts.ListCart.COLUMN_IMAGE, c.getImage());
 
             db.insert(TABLE_NAME, null, values);
         }else{
@@ -57,38 +59,30 @@ public class CartListDBHelper extends SQLiteOpenHelper{
         }
     }
 
-    public void delete() {
-        SQLiteDatabase db=this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
-        onCreate(db);
+    // Delete the order
+    public void deleteOrder(SQLiteDatabase dblite) {
+        dblite.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
     }
 
     public ArrayList<CartList> getAllData(SQLiteDatabase db){
-
         ArrayList<CartList> array_cart = new ArrayList<>();
-        String GETNAMES = "SELECT * FROM " + TABLE_NAME;
-
-        db = getReadableDatabase();
-
-        if(db!=null){
-            Cursor cursor = db.rawQuery(GETNAMES, null);
-            cursor.moveToFirst();
-            while(!cursor.isAfterLast()) {
-
-                @SuppressLint("Range")
-                String nom = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_NAME_TITLE));
-                @SuppressLint("Range")
-                String preu = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_PRICE));
-                @SuppressLint("Range")
-                String quantitat = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_QUANTITY));
-                @SuppressLint("Range")
-                String descripcio = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_DESCRIPTION_TITLE));
-
-                array_cart.add(new CartList(nom,preu,quantitat,descripcio));
-                cursor.moveToNext();
-            }
-            cursor.close();
+        Cursor cursor = db.query(TABLE_NAME, new String[]{"name", "description", "quantity", "price","image","id"},null, null, null, null, null);
+        CartList c;
+        while (cursor.moveToNext()) {
+            c = new CartList(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5));
+            array_cart.add(c);
         }
+        cursor.close();
         return array_cart;
+    }
+    // Deletes a item of database by id
+    public void deleteItem(SQLiteDatabase db, int id){
+
+        if (db.isOpen()){
+            String ID = String.valueOf(id);
+            db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE ID = " + ID);
+        } else {
+            Log.i("sql","Database is closed");
+        }
     }
 }

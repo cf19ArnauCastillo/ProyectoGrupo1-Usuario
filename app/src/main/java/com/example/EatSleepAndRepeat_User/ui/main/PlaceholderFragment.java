@@ -1,5 +1,6 @@
 package com.example.EatSleepAndRepeat_User.ui.main;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.example.EatSleepAndRepeat_User.databinding.FragmentProductLabelBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,9 @@ public class PlaceholderFragment extends Fragment {
     DatabaseReference refDish;
     private PageViewModel pageViewModel;
     private FragmentProductLabelBinding binding;
+    private SQLiteDatabase dblite;
+    private CartListDBHelper cartHelper;
+
     //private DBHelper db;
 
     private int index;

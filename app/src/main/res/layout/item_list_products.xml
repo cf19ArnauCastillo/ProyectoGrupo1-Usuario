@@ -16,7 +16,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/txtProductCart"
+            android:id="@+id/txtDescriptionProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -61,7 +61,7 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtProductCart">
+            app:layout_constraintTop_toBottomOf="@+id/txtDescriptionProduct">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintPrice"
@@ -72,7 +72,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/txtAmount"
+                    android:id="@+id/txtPriceProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="25.00"
@@ -90,7 +90,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtAmount"
+                    app:layout_constraintStart_toEndOf="@+id/txtPriceProduct"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.269" />
 
@@ -105,7 +105,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/btnAddCart"
+                    android:id="@+id/btnAdd"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +126,7 @@
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnAddCart"
+                    app:layout_constraintEnd_toStartOf="@+id/btnAdd"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView

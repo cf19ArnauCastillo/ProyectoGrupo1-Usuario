@@ -1,25 +1,20 @@
 package com.example.EatSleepAndRepeat_User.ui.main;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
-import com.example.EatSleepAndRepeat_User.DB.DBHelper;
-import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.example.EatSleepAndRepeat_User.databinding.FragmentProductLabelBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

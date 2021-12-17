@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,8 +87,9 @@ public class FragmentCart extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerCart);
 
         // Get all items from cart
+        Log.i("dbHEPER________", items.get(0).getName());
         items = cartHelper.getAllData(dblite);
-
+        Log.i("dbHEPER________", items.get(0).getName());
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), items, cartHelper, dblite);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

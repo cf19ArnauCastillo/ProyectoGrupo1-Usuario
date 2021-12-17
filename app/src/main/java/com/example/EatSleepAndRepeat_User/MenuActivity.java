@@ -11,8 +11,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private CartListDBHelper dbHelper;
-    private SQLiteDatabase db;
+    private CartListDBHelper cartHelper;
+    private SQLiteDatabase dblite;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,15 +20,12 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
-
         // Initialize in home fragment
-
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
 
-        dbHelper = new CartListDBHelper(this);
-        db = dbHelper.getWritableDatabase();
+        // Connect with bd
+        cartHelper = new CartListDBHelper(getApplicationContext());
+        dblite = cartHelper.getWritableDatabase();
 
         BottomNavigationView bottomNav = findViewById(R.id.main_menu);
         bottomNav.setOnItemSelectedListener(item -> {
@@ -38,10 +35,10 @@ public class MenuActivity extends AppCompatActivity {
                     selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_menu:
-                    selectedFragment = new FragmentProducts();
+                    selectedFragment = new FragmentProducts(cartHelper, dblite);
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new FragmentCart(dbHelper, db);
+                    selectedFragment = new FragmentCart(cartHelper, dblite);
                     break;
                 case R.id.nav_settings:
                     selectedFragment = new FragmentSettings();

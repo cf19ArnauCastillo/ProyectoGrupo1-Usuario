@@ -2,28 +2,78 @@ package com.example.EatSleepAndRepeat_User.SQLITE;
 
 public class CartList {
 
-    String nom;
-    String descripcion;
-    String cantidad;
-    String precio;
+    String name;
+    String description;
+    String quantity;
+    String price;
+    String image;
+    int id;
 
-    public CartList(String nom, String descripcion, String cantidad, String precio) {
-        this.nom = nom;
-        this.descripcion = descripcion;
-        this.cantidad = cantidad;
-        this.precio = precio;
+    public CartList(String name, String description, String quantity, String price, String image, int id) {
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.image = image;
+        this.id = id;
+    }
+    public CartList(String name, String description, String quantity, String price, String image) {
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.image = image;
+        this.id = id;
+    }
+    public CartList(){
+
     }
 
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
+    public int getId() {
+        return id;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getCantidad() { return cantidad; }
-    public void setCantidad(String cantidad) { this.cantidad = cantidad; }
+    public String getImage() {
+        return image;
+    }
 
-    public String getPrecio() { return precio; }
-    public void setPrecio(String precio) { this.precio = precio; }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 }

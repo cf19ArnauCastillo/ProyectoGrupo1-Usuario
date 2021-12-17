@@ -34,11 +34,20 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerViewAdapterProducts.ViewHolder> {
     private ArrayList<Dish> dishes;
     private Context context;
+    private SQLiteDatabase dblite;
+    private CartListDBHelper cartHelper;
 
+    public RecyclerViewAdapterProducts(Context context ,ArrayList<Dish> dishes, CartListDBHelper cartHelper, SQLiteDatabase dblite){
+        this.dishes = dishes;
+        this.context = context;
+        this.cartHelper = cartHelper;
+        this.dblite = dblite;
+    }
     public RecyclerViewAdapterProducts(Context context ,ArrayList<Dish> dishes){
         this.dishes = dishes;
         this.context = context;
     }
+
 
     @NonNull
     @Override
@@ -56,14 +65,13 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         holder.desc.setText(dishes.get(position).getDescription());
         String p = String.format("%.2f", dishes.get(position).getPrice());
         holder.price.setText(p);
-        Log.i("HOLA:_________", "llego aqui");
+
+        // Load image
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference dateRef = storageRef.child(dishes.get(position).getImageName());
-        Log.i("REF:_________", dateRef.toString());
         dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
             @Override
             public void onSuccess(Uri downloadUrl){
-                Log.i("URL:_________", downloadUrl.toString());
                 Glide.with(context).load(downloadUrl).into(holder.image);
             }
         });
@@ -71,13 +79,17 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         holder.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CartListDBHelper cartListDBHelper = new CartListDBHelper(context);
-                cartListDBHelper.delete();
-                SQLiteDatabase db = cartListDBHelper.getWritableDatabase();
-                //dishes.get(position).getDescription()
-                CartList item = new CartList(dishes.get(position).getName(), "a", holder.txtNumber.getText().toString(), Double.toString(dishes.get(position).getPrice()));
+                cartHelper = new CartListDBHelper(context);
+                dblite = cartHelper.getWritableDatabase();
+                CartList item = new CartList(dishes.get(position).getName(),
+                        "a",
+                        holder.txtNumber.getText().toString(),
+                        Double.toString(dishes.get(position).getPrice()),
+                        dishes.get(position).getImageName());
 
-                cartListDBHelper.insertContact(db, item);
+                Log.i("PRODUCT_____", dishes.get(position).getName());
+
+                cartHelper.insertContact(dblite, item);
 
             }
         });

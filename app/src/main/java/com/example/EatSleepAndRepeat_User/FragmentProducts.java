@@ -1,5 +1,6 @@
 package com.example.EatSleepAndRepeat_User;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.Toolbar;
 
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.example.EatSleepAndRepeat_User.databinding.FragmentProductLabelBinding;
 import com.example.EatSleepAndRepeat_User.ui.main.PlaceholderFragment;
 import com.example.EatSleepAndRepeat_User.ui.main.SectionsPagerAdapter;
@@ -37,12 +39,18 @@ public class FragmentProducts extends Fragment {
     private Fragment productFragment;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private SQLiteDatabase dblite;
+    private CartListDBHelper cartHelper;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     public FragmentProducts() {
         // Required empty public constructor
     }
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    public FragmentProducts(CartListDBHelper cartHelper, SQLiteDatabase dblite) {
+        this.cartHelper = cartHelper;
+        this.dblite = dblite;
+    }
 
     // TODO: Rename and change types and number of parameters
     public static FragmentProducts newInstance() {

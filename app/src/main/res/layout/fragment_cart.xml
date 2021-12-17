@@ -34,21 +34,44 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintCart">
+
+            <Button
+                android:id="@+id/removeOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableLeft="@drawable/ic_delete"
+                android:text="@string/removeOrder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintRecycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintButtomsCarts"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintCart">
+            app:layout_constraintTop_toBottomOf="@+id/constraintRemove">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewCart"
+                android:id="@+id/recyclerCart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/black"
@@ -56,6 +79,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -70,7 +94,7 @@
             <Button
                 android:id="@+id/btnCheckout"
                 android:layout_width="140dp"
-                android:layout_height="49dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:text="@string/txtCheckout"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -78,6 +102,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/custom_total"
@@ -105,9 +130,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
                     android:paddingTop="20px"
                     android:paddingRight="20px"
-                    android:paddingBottom="20px" />
+                    android:paddingBottom="20px"
+                    android:text="0.00"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtEuroCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:paddingTop="20px"
+                    android:paddingRight="20px"
+                    android:paddingBottom="20px"
+                    android:text="€"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

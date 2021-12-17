@@ -1,13 +1,19 @@
 package com.example.EatSleepAndRepeat_User;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.EatSleepAndRepeat_User.DB.DBHelper;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private CartListDBHelper cartHelper;
+    private SQLiteDatabase dblite;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,6 +24,10 @@ public class MenuActivity extends AppCompatActivity {
         // Initialize in home fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
 
+        // Connect with bd
+        cartHelper = new CartListDBHelper(getApplicationContext());
+        dblite = cartHelper.getWritableDatabase();
+
         BottomNavigationView bottomNav = findViewById(R.id.main_menu);
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
@@ -26,10 +36,10 @@ public class MenuActivity extends AppCompatActivity {
                     selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_menu:
-                    selectedFragment = new FragmentProducts();
+                    selectedFragment = new FragmentProducts(cartHelper, dblite);
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new FragmentCart();
+                    selectedFragment = new FragmentCart(cartHelper, dblite);
                     break;
                 case R.id.nav_settings:
                     selectedFragment = new FragmentSettings();

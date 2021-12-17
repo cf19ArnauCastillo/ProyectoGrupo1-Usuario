@@ -46,17 +46,18 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         holder.desc.setText(dishes.get(position).getDescription());
         String p = String.format("%.2f", dishes.get(position).getPrice());
         holder.price.setText(p);
-        Log.i("HOLA:_________", "llego aqui");
+
+        // Load image
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference dateRef = storageRef.child(dishes.get(position).getImageName());
-        Log.i("REF:_________", dateRef.toString());
         dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
             @Override
             public void onSuccess(Uri downloadUrl){
-                Log.i("URL:_________", downloadUrl.toString());
                 Glide.with(context).load(downloadUrl).into(holder.image);
             }
         });
+
+        
     }
 
     @Override

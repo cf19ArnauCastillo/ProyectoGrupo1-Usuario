@@ -29,6 +29,9 @@
     <string name="txtTotal">Total:</string>
     <string name="txtCheckout">Checkout</string>
     <string name="removeOrder">Order</string>
+    <string name="alertDelete">Tht order will be delete permanently</string>
+    <string name="confirmation">Do you want to continue?</string>
+    <string name="deletedOrder">Order successfully deleted</string>
 
     <!--Category-->
     <string name="txtCategories">Categories</string>
@@ -47,6 +50,5 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_category">CategoryActivity</string>
     <string name="addedProduct">The item was added correctly</string>
-
 
 </resources>

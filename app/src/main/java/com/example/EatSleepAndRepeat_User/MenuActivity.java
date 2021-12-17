@@ -36,10 +36,10 @@ public class MenuActivity extends AppCompatActivity {
                     selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_menu:
-                    selectedFragment = new FragmentProducts(cartHelper, dblite);
+                    selectedFragment = new FragmentProducts();
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new FragmentCart(cartHelper, dblite);
+                    selectedFragment = new FragmentCart();
                     break;
                 case R.id.nav_settings:
                     selectedFragment = new FragmentSettings();

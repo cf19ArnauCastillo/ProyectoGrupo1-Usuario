@@ -17,7 +17,7 @@ public class CartList {
         this.image = image;
         this.id = id;
     }
-    public CartList(String name, String description, String quantity, String price) {
+    public CartList(String name, String description, String quantity, String price, String image) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;

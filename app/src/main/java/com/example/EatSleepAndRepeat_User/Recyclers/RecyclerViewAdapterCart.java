@@ -51,40 +51,20 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CartList i = items.get(position);
-
-        holder.name.setText(i.getName());
-        holder.desc.setText(i.getDescription());
-        holder.quantity.setText(i.getQuantity());
-        holder.amount.setText(getAmount(i.getQuantity(), i.getPrice()));
-
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference dateRef = storageRef.child(i.getImage());
-        dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
-            @Override
-            public void onSuccess(Uri downloadUrl){
-                Glide.with(context).load(downloadUrl).into(holder.image);
-            }
-        });
-
-
-        //This button will delete a item on the db.
-        holder.deleteItem.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                int id = i.getId();
-                cartHelper.deleteItem(dblite, id);
-                FragmentCart cart = (FragmentCart) fragment.getFragmentManager().findFragmentById(R.id.fragment_container);
-                cart.refresh();
-            }
-        });
-
-
     }
 
     @Override
     public int getItemCount() {
         return items.size();
     }
+
+    public String getAmount(String quantity, String price){
+        int q = Integer.valueOf(quantity);
+        double p = Double.valueOf(price);
+        return String.format("%.2f", q * p);
+    }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
@@ -105,9 +85,4 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
         }
     }
 
-    public String getAmount(String quantity, String price){
-        int q = Integer.valueOf(quantity);
-        double p = Integer.valueOf(price);
-        return String.format("%.2f", q * p);
-    }
 }

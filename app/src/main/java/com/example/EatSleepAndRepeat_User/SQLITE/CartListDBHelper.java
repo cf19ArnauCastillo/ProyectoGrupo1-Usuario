@@ -59,7 +59,6 @@ public class CartListDBHelper extends SQLiteOpenHelper{
         }
     }
 
-
     // Delete the order
     public void deleteOrder(SQLiteDatabase dblite) {
         dblite.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
@@ -87,6 +86,4 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             Log.i("sql","Database is closed");
         }
     }
-
-
 }

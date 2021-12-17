@@ -1,10 +1,17 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.R;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -24,7 +34,15 @@ import java.util.ArrayList;
 public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerViewAdapterProducts.ViewHolder> {
     private ArrayList<Dish> dishes;
     private Context context;
+    private SQLiteDatabase dblite;
+    private CartListDBHelper cartHelper;
 
+    public RecyclerViewAdapterProducts(Context context ,ArrayList<Dish> dishes, CartListDBHelper cartHelper, SQLiteDatabase dblite){
+        this.dishes = dishes;
+        this.context = context;
+        this.cartHelper = cartHelper;
+        this.dblite = dblite;
+    }
     public RecyclerViewAdapterProducts(Context context ,ArrayList<Dish> dishes){
         this.dishes = dishes;
         this.context = context;
@@ -57,7 +75,47 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             }
         });
 
-        
+        holder.btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartHelper = new CartListDBHelper(context);
+                dblite = cartHelper.getWritableDatabase();
+                CartList item = new CartList(dishes.get(position).getName(),
+                        "a",
+                        holder.txtNumber.getText().toString(),
+                        Double.toString(dishes.get(position).getPrice()),
+                        dishes.get(position).getImageName());
+
+                Log.i("PRODUCT_____", dishes.get(position).getName());
+
+                cartHelper.insertContact(dblite, item);
+
+            }
+        });
+
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(holder.txtNumber.getText().toString())+1;
+
+                holder.txtNumber.setText(String.valueOf(quantity));
+
+            }
+        });
+
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(holder.txtNumber.getText().toString())-1;
+                if(quantity<=1){
+                    quantity = 1;
+                }
+
+                holder.txtNumber.setText(String.valueOf(quantity));
+
+            }
+        });
+
     }
 
     @Override
@@ -70,15 +128,24 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         TextView desc;
         TextView price;
         ImageView add;
+        ImageView remove;
         ImageView image;
+        Button btnAddProduct;
+        TextView txtNumber;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.txtNameProduct);
-            desc = itemView.findViewById(R.id.txtProductCart);
-            price = itemView.findViewById(R.id.txtAmount);
-            add = itemView.findViewById(R.id.btnAddCart);
+            desc = itemView.findViewById(R.id.txtDescriptionProduct);
+            price = itemView.findViewById(R.id.txtPriceProduct);
+            add = itemView.findViewById(R.id.btnAdd);
+            remove = itemView.findViewById(R.id.btnRemove);
             image = itemView.findViewById(R.id.imgProduct);
+            btnAddProduct = itemView.findViewById(R.id.btnAddProduct);
+            txtNumber = itemView.findViewById(R.id.txtNumber);
         }
     }
+
+
+
 }

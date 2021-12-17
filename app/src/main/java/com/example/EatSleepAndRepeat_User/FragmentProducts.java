@@ -41,18 +41,17 @@ public class FragmentProducts extends Fragment {
     private ViewPager mViewPager;
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
 
     public FragmentProducts() {
         // Required empty public constructor
     }
-
     public FragmentProducts(CartListDBHelper cartHelper, SQLiteDatabase dblite) {
         this.cartHelper = cartHelper;
         this.dblite = dblite;
     }
-
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
 
     // TODO: Rename and change types and number of parameters
     public static FragmentProducts newInstance() {

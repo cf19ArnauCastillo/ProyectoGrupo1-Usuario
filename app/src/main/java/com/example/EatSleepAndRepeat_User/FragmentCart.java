@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,17 +23,25 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
 import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
+import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.DB.DBHelper;
+import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -39,10 +50,10 @@ import java.util.ArrayList;
 
 public class FragmentCart extends Fragment {
 
-    DBHelper dbHelper;
-    DatabaseReference refOrd;
-    FirebaseDatabase db;
-    ArrayList<CartList> items;
+    private DBHelper dbHelper;
+    private DatabaseReference refOrd;
+    private FirebaseDatabase db;
+    private ArrayList<CartList> items;
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
 
@@ -77,10 +88,9 @@ public class FragmentCart extends Fragment {
         // Get all items from cart
         items = cartHelper.getAllData(dblite);
 
-
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), items, cartHelper, dblite);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Set total amount
         TextView amount = view.findViewById(R.id.intTotal);
@@ -116,11 +126,10 @@ public class FragmentCart extends Fragment {
         });
         return view;
     }
-
     public String getAmount(){
         double total = 0;
         for (int i = 0; i < items.size(); i++) {
-            total += Integer.valueOf(items.get(i).getPrice());
+            total += Double.valueOf(items.get(i).getPrice());
         }
         return String.valueOf(total);
     }

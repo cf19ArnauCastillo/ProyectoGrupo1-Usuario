@@ -41,6 +41,9 @@ public class PlaceholderFragment extends Fragment {
     DatabaseReference refDish;
     private PageViewModel pageViewModel;
     private FragmentProductLabelBinding binding;
+    private SQLiteDatabase dblite;
+    private CartListDBHelper cartHelper;
+
     //private DBHelper db;
 
     private int index;
@@ -67,7 +70,6 @@ public class PlaceholderFragment extends Fragment {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
         pageViewModel.setIndex(index);
-
     }
 
     @Override
@@ -80,9 +82,9 @@ public class PlaceholderFragment extends Fragment {
 
         Log.i("Posicio ", "" + index );
         final RecyclerView recyclerProducts = binding.recyclerProduct;
-
         ArrayList<Dish> array = new ArrayList<Dish>();
 
+        //en fer la consulta a la bbdd heu de passar el child de la categoria escollida
 
         db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         refDish = db.getReference("dish");

@@ -16,6 +16,7 @@ import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
+import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -50,14 +51,13 @@ public class FragmentCart extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference("message");
 
         myRef.setValue("Hello, World!");
 
-        ArrayList<String> array_cart = CartListDBHelper.getAllData(db);
+        ArrayList<CartList> array_cart = dbHelper.getAllData(db);
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewCart);

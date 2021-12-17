@@ -8,7 +8,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-//
+
+
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
@@ -62,48 +63,32 @@ public class CartListDBHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public static ArrayList<String> getAllData(SQLiteDatabase db){
-        ArrayList<String> array_noms = new ArrayList<>();
+    public ArrayList<CartList> getAllData(SQLiteDatabase db){
 
+        ArrayList<CartList> array_cart = new ArrayList<>();
         String GETNAMES = "SELECT * FROM " + TABLE_NAME;
 
-      /*  if(db!=null)
-        {
+        db = getReadableDatabase();
+
+        if(db!=null){
             Cursor cursor = db.rawQuery(GETNAMES, null);
             cursor.moveToFirst();
-            while(!cursor.isAfterLast())
-            {
-                @SuppressLint("Range") String nom = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_NAME_TITLE));
+            while(!cursor.isAfterLast()) {
 
-                array_noms.add(new String(nom));
+                @SuppressLint("Range")
+                String nom = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_NAME_TITLE));
+                @SuppressLint("Range")
+                String preu = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_PRICE));
+                @SuppressLint("Range")
+                String quantitat = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_QUANTITY));
+                @SuppressLint("Range")
+                String descripcio = cursor.getString(cursor.getColumnIndex(CartListContacts.ListCart.COLUMN_DESCRIPTION_TITLE));
+
+                array_cart.add(new CartList(nom,preu,quantitat,descripcio));
                 cursor.moveToNext();
             }
             cursor.close();
         }
-
-       */
-
-        if(db!=null)
-        {
-            Cursor cursor = db.query(TABLE_NAME, new String[]{"name","price","quantity","description"},null,null,null,null;
-            cursor.moveToFirst();
-            while(!cursor.isAfterLast())
-            {
-                String nom = cursor.getString(0);
-
-                //Crear un objeto CartList con los valores de la consulta
-                //Añadir este objeto al array list
-
-                //array_noms.add(new String(nom));
-                cursor.moveToNext();
-            }
-            cursor.close();
-        }
-
-
-        return array_noms;
+        return array_cart;
     }
-
-
-
 }

@@ -6,11 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +72,6 @@ public class FragmentCart extends Fragment {
         // Get all items from cart
         items = cartHelper.getAllData(dblite);
 
-
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), items, cartHelper, dblite);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -107,14 +108,26 @@ public class FragmentCart extends Fragment {
                 dialog.show();
             }
         });
+
+        Button checkout = view.findViewById(R.id.btnCheckout);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
         return view;
     }
     public String getAmount(){
         double total = 0;
+
         for (int i = 0; i < items.size(); i++) {
-            total += Double.valueOf(items.get(i).getPrice());
+            total += Double.valueOf(items.get(i).getPrice())*Double.valueOf(items.get(i).getQuantity());
         }
-        return String.valueOf(total);
+
+        return String.format("%.2f", total);
     }
 
     // Fragment screen it refresh.

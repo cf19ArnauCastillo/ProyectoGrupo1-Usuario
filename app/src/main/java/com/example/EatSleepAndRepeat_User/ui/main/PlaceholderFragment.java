@@ -88,11 +88,9 @@ public class PlaceholderFragment extends Fragment {
 
         //en fer la consulta a la bbdd heu de passar el child de la categoria escollida
 
-
+        db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
+        refDish = db.getReference("dish");
         if(Integer.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)) == 0){
-            db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
-            refDish = db.getReference("dish");
-
             refDish.child("Pizzas").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,29 +115,85 @@ public class PlaceholderFragment extends Fragment {
             Log.i("placeholder", "" + array.size() + " - " + array.get(0).getName());
 */
         } else if (ARG_SECTION_NUMBER.equals("1")){
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
-            array.add(new Dish("hola", "1","all", "all", "all", 25));
+            refDish.child("Pizzas").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        Dish dish = ds.getValue(Dish.class);
+                        array.add(dish);
+                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
+                    }
 
+                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
+                    recyclerProducts.setAdapter(adapter);
+                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
+        } else if (ARG_SECTION_NUMBER.equals("2")){
+            refDish.child("Appetizers").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        Dish dish = ds.getValue(Dish.class);
+                        array.add(dish);
+                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
+                    }
+                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
+                    recyclerProducts.setAdapter(adapter);
+                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
+        } else if (ARG_SECTION_NUMBER.equals("3")){
+            refDish.child("Desserts").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        Dish dish = ds.getValue(Dish.class);
+                        array.add(dish);
+                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
+                    }
+
+                    //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());
+                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
+                    recyclerProducts.setAdapter(adapter);
+                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
+        } else if (ARG_SECTION_NUMBER.equals("4")){
+            refDish.child("Drinks").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        Dish dish = ds.getValue(Dish.class);
+                        array.add(dish);
+                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
+                    }
+                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
+                    recyclerProducts.setAdapter(adapter);
+                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
         }
-
-       /* RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(array);
-        recyclerProducts.setAdapter(adapter);
-        recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));*/
-        /*
-        final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-         */
         return root;
     }
 

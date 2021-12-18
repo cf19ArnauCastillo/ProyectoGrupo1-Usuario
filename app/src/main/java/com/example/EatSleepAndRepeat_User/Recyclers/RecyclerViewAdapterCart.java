@@ -1,8 +1,6 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.icu.text.Transliterator;
-import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.FragmentCart;
 import com.example.EatSleepAndRepeat_User.R;
@@ -72,8 +71,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             public void onClick(View v) {
                 int id = i.getId();
                 cartHelper.deleteItem(dblite, id);
-                FragmentCart cart = (FragmentCart) fragment.getFragmentManager().findFragmentById(R.id.fragment_container);
-                cart.refresh();
+refresh();
             }
         });
     }
@@ -109,8 +107,11 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             amount = itemView.findViewById(R.id.txtAmount);
         }
     }
-
-
-
+    public void refresh(){
+        FragmentManager fragmentManager = fragment.getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        FragmentCart cart = (FragmentCart) fragment.getFragmentManager().findFragmentById(R.id.fragment_container_app);
+        ft.detach(cart).attach(cart).commit();
+    }
 
 }

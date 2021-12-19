@@ -71,7 +71,6 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             public void onClick(View v) {
                 int id = i.getId();
                 cartHelper.deleteItem(dblite, id);
-refresh();
             }
         });
     }
@@ -107,11 +106,4 @@ refresh();
             amount = itemView.findViewById(R.id.txtAmount);
         }
     }
-    public void refresh(){
-        FragmentManager fragmentManager = fragment.getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        FragmentCart cart = (FragmentCart) fragment.getFragmentManager().findFragmentById(R.id.fragment_container_app);
-        ft.detach(cart).attach(cart).commit();
-    }
-
 }

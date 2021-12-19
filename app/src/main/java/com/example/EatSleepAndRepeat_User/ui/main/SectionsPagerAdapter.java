@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.FragmentCart;
 import com.example.EatSleepAndRepeat_User.FragmentProducts;
 import com.example.EatSleepAndRepeat_User.R;
@@ -19,34 +20,41 @@ import com.example.EatSleepAndRepeat_User.R;
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tabAll, R.string.tabPizzas, R.string.tabStarters, R.string.tabDesserts, R.string.tabDrinks};
-    private final Context mContext;
+    private int numTabs;
+    private Dish[] all;
+    private Dish[] pizzas;
+    private Dish[] starters;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    public SectionsPagerAdapter(FragmentManager fm, int numTabs, Dish[] all,
+                                Dish[] pizzas, Dish[] starters) {
         super(fm);
-        mContext = context;
+        this.numTabs = numTabs;
+        this.all = all;
+        this.pizzas = pizzas;
+        this.starters = starters;
     }
 
     @Override
     public Fragment getItem(int position) {
-
-        Log.i("PROD TEXT" , "----------_>" + mContext.getString(TAB_TITLES[position]));
-
-        return PlaceholderFragment.newInstance(position);
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES[position]);
+        switch (position) {
+            case 0:
+                FragmentProducts tab1 = FragmentProducts.newInstance(all);
+                return tab1;
+            case 1:
+                FragmentProducts tab2 = FragmentProducts.newInstance(pizzas);
+                return tab2;
+            case 2:
+                FragmentProducts tab3 = FragmentProducts.newInstance(starters);
+                return tab3;
+            default:
+                throw new RuntimeException("Tab position invalid " + position);
+        }
     }
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 5;
+        return numTabs;
     }
 }

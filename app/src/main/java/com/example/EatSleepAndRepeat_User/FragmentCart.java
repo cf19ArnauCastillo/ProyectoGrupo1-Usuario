@@ -41,6 +41,7 @@ public class FragmentCart extends Fragment {
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
 
+
     public FragmentCart() {
         // Required empty public constructor
     }

@@ -1,16 +1,20 @@
 package com.example.EatSleepAndRepeat_User;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements FragmentProducts.OnListFragmentInteractionListener {
 
     private CartListDBHelper cartHelper;
     private SQLiteDatabase dblite;
@@ -22,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         // Initialize in home fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_app, new FragmentHome()).commit();
+
 
         // Connect with bd
         cartHelper = new CartListDBHelper(getApplicationContext());
@@ -36,8 +40,9 @@ public class MenuActivity extends AppCompatActivity {
                     selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_menu:
-                    selectedFragment = new FragmentProducts(cartHelper, dblite);
-                    break;
+                    Intent a = new Intent(MenuActivity.this,ProductsActivity.class);
+                    startActivity(a);
+                    return true;
                 case R.id.nav_cart:
                     selectedFragment = new FragmentCart(cartHelper, dblite);
                     break;
@@ -50,7 +55,11 @@ public class MenuActivity extends AppCompatActivity {
             return true;
 
         });
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_app, new FragmentHome()).commit();
+    }
+    public void onListFragmentInteraction(Dish model) {
+        // the user clicked on this item over the list
+        Toast.makeText(MenuActivity.this, Dish.class.getSimpleName() + ":" + model.getId() + " - "  +model.getName(), Toast.LENGTH_LONG).show();
     }
 }
 

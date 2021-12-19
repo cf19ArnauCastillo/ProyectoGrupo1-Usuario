@@ -1,27 +1,26 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
-import android.app.AlertDialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.Bundle;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
-import com.example.EatSleepAndRepeat_User.DB.DBHelper;
+
+import com.example.EatSleepAndRepeat_User.FragmentProducts;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
@@ -29,23 +28,28 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
 
 public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerViewAdapterProducts.ViewHolder> {
-    private ArrayList<Dish> dishes;
     private Context context;
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
+    private final Dish[] dishes;
+    private FragmentProducts.OnListFragmentInteractionListener interactionListener = null;
 
-    public RecyclerViewAdapterProducts(Context context ,ArrayList<Dish> dishes, CartListDBHelper cartHelper, SQLiteDatabase dblite){
+    public RecyclerViewAdapterProducts(Context context, Dish[] dishes, CartListDBHelper cartHelper, SQLiteDatabase dblite){
         this.dishes = dishes;
         this.context = context;
         this.cartHelper = cartHelper;
         this.dblite = dblite;
     }
-    public RecyclerViewAdapterProducts(Context context ,ArrayList<Dish> dishes){
+    public RecyclerViewAdapterProducts(Context context, Dish[] dishes){
         this.dishes = dishes;
         this.context = context;
+    }
+    public RecyclerViewAdapterProducts(Dish[] items, FragmentProducts.OnListFragmentInteractionListener listener) {
+        dishes = items;
+        interactionListener = listener;
     }
 
 
@@ -61,33 +65,46 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(dishes.get(position).getName());
-        holder.desc.setText(dishes.get(position).getDescription());
-        String p = String.format("%.2f", dishes.get(position).getPrice());
+        Dish dm = dishes[position];
+        holder.dishItem = dm;
+        holder.name.setText(dm.getCategory());
+        holder.desc.setText(dm.getDescription());
+        String p = String.format("%.2f", dm.getPrice());
         holder.price.setText(p);
 
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != interactionListener) {
+                    // Notify the active callbacks interface (the activity, if the
+                    // fragment is attached to one) that an item has been selected.
+                    interactionListener.onListFragmentInteraction(holder.dishItem);
+                }
+            }
+        });
+
         // Load image
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference dateRef = storageRef.child(dishes.get(position).getImageName());
+        /*StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference dateRef = storageRef.child(dm.getImageName());
         dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
             @Override
             public void onSuccess(Uri downloadUrl){
                 Glide.with(context).load(downloadUrl).into(holder.image);
             }
-        });
+        });*/
 
         holder.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cartHelper = new CartListDBHelper(context);
                 dblite = cartHelper.getWritableDatabase();
-                CartList item = new CartList(dishes.get(position).getName(),
+                CartList item = new CartList(dishes[position].getName(),
                         "a",
                         holder.txtNumber.getText().toString(),
-                        Double.toString(dishes.get(position).getPrice()),
-                        dishes.get(position).getImageName());
+                        Double.toString(dishes[position].getPrice()),
+                        dishes[position].getImageName());
 
-                Log.i("PRODUCT_____", dishes.get(position).getName());
+                Log.i("PRODUCT_____", dishes[position].getName());
 
                 cartHelper.insertContact(dblite, item);
 
@@ -121,10 +138,11 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public int getItemCount() {
-        return dishes.size();
+        return dishes.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        View mView;
         TextView name;
         TextView desc;
         TextView price;
@@ -133,9 +151,11 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         ImageView image;
         Button btnAddProduct;
         TextView txtNumber;
+        Dish dishItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mView = itemView;
             name = itemView.findViewById(R.id.txtNameProduct);
             desc = itemView.findViewById(R.id.txtDescriptionProduct);
             price = itemView.findViewById(R.id.txtPriceProduct);
@@ -146,7 +166,4 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             txtNumber = itemView.findViewById(R.id.txtNumber);
         }
     }
-
-
-
 }

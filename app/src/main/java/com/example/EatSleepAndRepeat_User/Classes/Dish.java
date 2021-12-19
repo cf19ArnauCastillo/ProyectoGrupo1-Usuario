@@ -1,8 +1,11 @@
 package com.example.EatSleepAndRepeat_User.Classes;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Dish implements Serializable {
+public class Dish implements Serializable, Parcelable {
     String id;
     String imageName;
     String category;
@@ -10,7 +13,10 @@ public class Dish implements Serializable {
     String description;
     double price;
 
-    public Dish(){
+    public Dish(String name, String description, String category) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
     }
 
     public Dish(String id, String imageName, String category, String name, String description, double price) {
@@ -21,6 +27,11 @@ public class Dish implements Serializable {
         this.category = category;
         this.price = price;
 
+    }
+    protected Dish(Parcel in) {
+        id = in.readString();
+        description = in.readString();
+        category = in.readString();
     }
 
     public String getImageName() {
@@ -69,5 +80,26 @@ public class Dish implements Serializable {
 
     public void setId(String dishId) {
         this.id = dishId;
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(description);
+        dest.writeString(category);
+    }
+    public static final Creator<Dish> CREATOR = new Creator<Dish>() {
+        @Override
+        public Dish createFromParcel(Parcel in) {
+            return new Dish(in);
+        }
+
+        @Override
+        public Dish[] newArray(int size) {
+            return new Dish[size];
+        }
+    };
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

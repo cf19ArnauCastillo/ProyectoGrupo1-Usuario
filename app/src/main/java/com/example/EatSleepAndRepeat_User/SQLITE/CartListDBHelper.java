@@ -1,5 +1,7 @@
 package com.example.EatSleepAndRepeat_User.SQLITE;
 
+import static com.example.EatSleepAndRepeat_User.SQLITE.CartListContacts.ListCart.COLUMN_NAME;
+import static com.example.EatSleepAndRepeat_User.SQLITE.CartListContacts.ListCart.COLUMN_QUANTITY;
 import static com.example.EatSleepAndRepeat_User.SQLITE.CartListContacts.ListCart.TABLE_NAME;
 
 import android.annotation.SuppressLint;
@@ -11,6 +13,9 @@ import android.util.Log;
 
 
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.EatSleepAndRepeat_User.Classes.Dish;
+
 import java.util.ArrayList;
 
 public class CartListDBHelper extends SQLiteOpenHelper{
@@ -59,6 +64,8 @@ public class CartListDBHelper extends SQLiteOpenHelper{
         }
     }
 
+
+
     // Delete the order
     public void deleteOrder(SQLiteDatabase dblite) {
         dblite.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
@@ -85,4 +92,32 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             Log.i("sql","Database is closed");
         }
     }
+
+    public boolean itemAdded(SQLiteDatabase db, String name){
+
+        if (db.isOpen()){
+            //Creation of the register for insert object with the content values
+            ContentValues values = new ContentValues();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + name + "'", null);
+            int num = cursor.getCount();
+            if (num == 0) return false;
+        } else {
+            Log.i("sql","Database is closed");
+        }
+        return true;
+    }
+
+    public void updateQuantity(SQLiteDatabase db, String name, String quantity){
+        //Check the bd is open
+        if (db.isOpen()){
+            //Creation of the register for insert object with the content values
+            ContentValues values = new ContentValues();
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " +
+                    COLUMN_QUANTITY + " = '" + quantity + "'" +
+                    " WHERE " + COLUMN_NAME + " = '" + name + "'");
+        } else {
+            Log.i("sql","Database is closed");
+        }
+    }
+
 }

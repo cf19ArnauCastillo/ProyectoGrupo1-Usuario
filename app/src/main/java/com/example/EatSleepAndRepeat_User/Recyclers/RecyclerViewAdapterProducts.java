@@ -83,6 +83,8 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
                 cartHelper = new CartListDBHelper(context);
                 dblite = cartHelper.getWritableDatabase();
 
+                Log.i("id_____", ""+dishes.get(position).getId());
+
                 boolean isAdded = cartHelper.itemAdded(dblite, dishes.get(position).getName());
                 if(isAdded){
                     cartHelper.updateQuantity(dblite, dishes.get(position).getName(), holder.txtNumber.getText().toString() );
@@ -91,7 +93,9 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
                             "a",
                             holder.txtNumber.getText().toString(),
                             Double.toString(dishes.get(position).getPrice()),
-                            dishes.get(position).getImageName());
+                            dishes.get(position).getImageName(),
+                            dishes.get(position).getId(),
+                            dishes.get(position).getCategory());
 
                     Log.i("PRODUCT_____", dishes.get(position).getName());
 

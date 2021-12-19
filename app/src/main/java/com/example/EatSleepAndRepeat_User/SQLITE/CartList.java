@@ -7,26 +7,40 @@ public class CartList {
     String quantity;
     String price;
     String image;
+    String category;
     int id;
+    String idFirebase;
 
-    public CartList(String name, String description, String quantity, String price, String image, int id) {
+    public CartList(String name, String description, String quantity, String price, String image, int id, String idFirebase, String category) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
         this.image = image;
         this.id = id;
+        this.idFirebase = idFirebase;
+        this.category = category;
+
     }
-    public CartList(String name, String description, String quantity, String price, String image) {
+    public CartList(String name, String description, String quantity, String price, String image, String idFirebase, String category) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
         this.image = image;
-        this.id = id;
+        this.idFirebase = idFirebase;
+        this.category = category;
     }
     public CartList(){
 
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getId() {
@@ -75,5 +89,13 @@ public class CartList {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getIdFirebase() {
+        return idFirebase;
+    }
+
+    public void setIdFirebase(String idFirebase) {
+        this.idFirebase = idFirebase;
     }
 }

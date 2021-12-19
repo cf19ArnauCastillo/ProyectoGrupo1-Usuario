@@ -23,6 +23,14 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     public String getStatus() {
         return status;
     }

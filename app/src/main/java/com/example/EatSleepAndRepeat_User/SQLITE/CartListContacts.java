@@ -12,6 +12,8 @@ public class CartListContacts {
         public static final String COLUMN_PRICE = "price";
         public static final String COLUMN_QUANTITY = "quantity";
         public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_IDFIREBASE = "idfirebase";
+        public static final String COLUM_CATEGORY = "category";
 
     }
 }

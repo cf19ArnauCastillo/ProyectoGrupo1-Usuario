@@ -23,6 +23,8 @@ import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.example.EatSleepAndRepeat_User.databinding.FragmentProductLabelBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
 public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final int[] TAB_TITLES = new int[]{R.string.tabAll, R.string.tabPizzas, R.string.tabStarters, R.string.tabDesserts, R.string.tabDrinks};
+    private static final String[] TAB_TITLES = new String[]{"All","Pizzas", "Appetizers", "Drinks", "Desserts"};
 
     FirebaseDatabase db;
     DatabaseReference refDish;
@@ -91,108 +93,28 @@ public class PlaceholderFragment extends Fragment {
         db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         refDish = db.getReference("dish");
         if(Integer.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)) == 0){
-            refDish.child("Pizzas").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        Dish dish = ds.getValue(Dish.class);
-                        array.add(dish);
-                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
+
+            for (int i = 0; i < TAB_TITLES.length; i++){
+                refDish.child(TAB_TITLES[i]).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        }
+                        else {
+                            for (DataSnapshot ds : task.getResult().getChildren()){
+                                Dish dish = ds.getValue(Dish.class);
+                                array.add(dish);
+                            }
+                            RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
+                            recyclerProducts.setAdapter(adapter);
+                            recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
+
+                        }
                     }
 
-                    //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());
-                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
-                    recyclerProducts.setAdapter(adapter);
-                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
-            /*array = db.getDishes();
-            Log.i("placeholder", "" + array.size() + " - " + array.get(0).getName());
-*/
-        } else if (ARG_SECTION_NUMBER.equals("1")){
-            refDish.child("Pizzas").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        Dish dish = ds.getValue(Dish.class);
-                        array.add(dish);
-                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
-                    }
-
-                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
-                    recyclerProducts.setAdapter(adapter);
-                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
-        } else if (ARG_SECTION_NUMBER.equals("2")){
-            refDish.child("Appetizers").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        Dish dish = ds.getValue(Dish.class);
-                        array.add(dish);
-                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
-                    }
-                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
-                    recyclerProducts.setAdapter(adapter);
-                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
-        } else if (ARG_SECTION_NUMBER.equals("3")){
-            refDish.child("Desserts").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        Dish dish = ds.getValue(Dish.class);
-                        array.add(dish);
-                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
-                    }
-
-                    //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());
-                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
-                    recyclerProducts.setAdapter(adapter);
-                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
-        } else if (ARG_SECTION_NUMBER.equals("4")){
-            refDish.child("Drinks").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        Dish dish = ds.getValue(Dish.class);
-                        array.add(dish);
-                        Log.i("prova", "------------------------------------" + dish.getName() + ds);
-                    }
-                    RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(getContext(), array);
-                    recyclerProducts.setAdapter(adapter);
-                    recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
+                });
+            }
         }
         return root;
     }

@@ -31,7 +31,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     private Context context;
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
-    private Fragment fragment;
+    private FragmentCart fragment;
     private DBHelper dbHelper = new DBHelper();
 
     public RecyclerViewAdapterCart(Context context, ArrayList<CartList> arrA, CartListDBHelper cartHelper, SQLiteDatabase dblite){
@@ -71,6 +71,8 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             public void onClick(View v) {
                 int id = i.getId();
                 cartHelper.deleteItem(dblite, id);
+                FragmentCart cart = (FragmentCart) fragment.getParentFragmentManager().findFragmentById(R.id.fragment_layout_cart);
+                cart.refresh();
             }
         });
     }

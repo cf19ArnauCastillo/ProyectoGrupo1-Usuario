@@ -68,6 +68,25 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
         String p = String.format("%.2f", dishes.get(position).getPrice());
         holder.price.setText(p);
 
+        Log.i("llego aqui", "recycler");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity app = (AppCompatActivity) view.getContext();
+                FragmentFoodDetail detailFragment = new FragmentFoodDetail(cartHelper, dblite);
+
+                // Create a new empty bundle
+                Bundle bundle = new Bundle();
+                // Inserts a Serializable value on key format
+                bundle.putSerializable("dish", dishes.get(position));
+                // Supply the construction arguments for the fragment
+                detailFragment.setArguments(bundle);
+                // Start fragment associated
+                app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_app, detailFragment).commit();
+
+            }
+        });
+
         // Load image
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference dateRef = storageRef.child(dishes.get(position).getImageName());
@@ -89,7 +108,7 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
                 FragmentFoodDetail fragmentFoodDetail = new FragmentFoodDetail();
                 fragmentFoodDetail.setArguments(bundle);
 
-                app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentFoodDetail).commit();
+                app.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_app, fragmentFoodDetail).commit();
             }
         });
 
@@ -144,6 +163,8 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
 
             }
         });
+
+
 
     }
 

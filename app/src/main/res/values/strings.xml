@@ -51,4 +51,11 @@
     <string name="title_activity_category">CategoryActivity</string>
     <string name="addedProduct">The item was added correctly</string>
 
+    <string-array name="size">
+        <item>Select to choose size</item>
+        <item name="b">Big</item>
+        <item name="m">Medium</item>
+        <item name="s">Small</item>
+    </string-array>
+
 </resources>

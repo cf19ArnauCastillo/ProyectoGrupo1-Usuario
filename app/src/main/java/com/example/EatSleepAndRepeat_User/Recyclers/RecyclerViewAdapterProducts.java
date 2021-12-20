@@ -59,7 +59,6 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
     }
 
     //okay
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(dishes.get(position).getName());

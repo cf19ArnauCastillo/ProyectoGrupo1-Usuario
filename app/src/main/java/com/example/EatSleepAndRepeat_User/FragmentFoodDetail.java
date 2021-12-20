@@ -21,6 +21,7 @@ public class FragmentFoodDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //hello
         View view = inflater.inflate(R.layout.fragment_food_detail, container, false);
         // Recoje la informacion mandada desde el recycler
         Bundle bundle = getArguments();

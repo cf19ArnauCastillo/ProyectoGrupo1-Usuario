@@ -167,31 +167,6 @@ public class DBHelper {
         mDishReference.addValueEventListener(dishListener);
     }
 
-    public void addOrder() {
-
-        //mDatabase = mDatabase.child("dish");
-
-        DatabaseReference pushedPostRef = refOrders.child("order").push();
-
-        String orderId = pushedPostRef.getKey();
-        Log.i("testDB", "" + orderId);
-
-
-        Dish dish = new Dish("-MpwFyCfweiNw281SYwu","Appetizer_2021_12_02_18_49_22","Appetizer","bravas","Esto son unas buenas bravas",5.99);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        String strDate = dateFormat.format(date);
-        ItemCart cart = new ItemCart(dish, 2);
-
-        ArrayList<ItemCart> items = new ArrayList<ItemCart>();
-        items.add(cart);
-        items.add(cart);
-        items.add(cart);
-
-        Order order = new Order("ariadna", items, "Received", strDate);
-
-        refOrders.child(orderId).setValue(order);
-    }
 
     /*public void getAllDishes(){
         db.collection("dish")

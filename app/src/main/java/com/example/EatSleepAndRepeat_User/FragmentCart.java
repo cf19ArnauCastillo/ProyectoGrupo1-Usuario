@@ -5,10 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -25,17 +21,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.EatSleepAndRepeat_User.Classes.Category;
-import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
-import com.example.EatSleepAndRepeat_User.Classes.Order;
-import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
 import com.example.EatSleepAndRepeat_User.Classes.Order;
@@ -44,10 +32,6 @@ import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
-import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
-import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -77,6 +61,7 @@ public class FragmentCart extends Fragment {
     public FragmentCart() {
         // Required empty public constructor
     }
+
     public FragmentCart(CartListDBHelper cartHelper, SQLiteDatabase dblite) {
         this.cartHelper = cartHelper;
         this.dblite = dblite;
@@ -90,6 +75,7 @@ public class FragmentCart extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,15 +83,13 @@ public class FragmentCart extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerCart);
 
         // Get all items from cart
-        Log.i("dbHEPER________", items.get(0).getName());
         items = cartHelper.getAllData(dblite);
+
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), items, cartHelper, dblite);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

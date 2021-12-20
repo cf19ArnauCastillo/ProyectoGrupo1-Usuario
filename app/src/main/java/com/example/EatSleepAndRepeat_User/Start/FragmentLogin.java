@@ -1,6 +1,8 @@
 package com.example.EatSleepAndRepeat_User.Start;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -44,6 +46,7 @@ public class FragmentLogin extends Fragment {
     private final String TAG = "Sign in";
     private static final int RC_SIGN_IN = 9001;
 
+
     public FragmentLogin() {
         // Required empty public constructor
     }
@@ -66,6 +69,7 @@ public class FragmentLogin extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Configure Google Sign In
+        SharedPreferences prefs = getContext().getSharedPreferences("SharedP", Context.MODE_PRIVATE);
 
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -89,9 +93,9 @@ public class FragmentLogin extends Fragment {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
 
         //if (account != null) {
-        if(currentUser != null  || account != null ){
+       /* if(currentUser != null  || account != null ){
             startMenu();
-        }
+        }*/
     }
 
 
@@ -99,6 +103,7 @@ public class FragmentLogin extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
 
         Button btnSigIn = view.findViewById(R.id.btnCreateAccount);
         EditText mail = view.findViewById(R.id.txtMailLogin);
@@ -139,6 +144,8 @@ public class FragmentLogin extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.i(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            SharedPreferences prefs = getContext().getSharedPreferences("SharedP", Context.MODE_PRIVATE);
+                            savePreferences(prefs, email);
                             startMenu();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -187,6 +194,8 @@ public class FragmentLogin extends Fragment {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            SharedPreferences prefs = getContext().getSharedPreferences("SharedP", Context.MODE_PRIVATE);
+                            savePreferences(prefs, user.getEmail());
                             startMenu();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -196,22 +205,12 @@ public class FragmentLogin extends Fragment {
                 });
 
     }
+    public void savePreferences(SharedPreferences prefs, String mail) {
+        SharedPreferences.Editor prefsEdits = prefs.edit();
 
-    /*
-    protected void setGooglePlusButtonText(SignInButton signInButton,
-                                           String buttonText) {
-        for (int i = 0; i < signInButton.getChildCount(); i++) {
-            View v = signInButton.getChildAt(i);
+        prefsEdits.putString("mail", mail);
+        prefsEdits.putBoolean("login", true);
 
-            if (v instanceof TextView) {
-                TextView tv = (TextView) v;
-                tv.setTextSize(15);
-                tv.setTypeface(null, Typeface.NORMAL);
-                tv.setText(buttonText);
-                return;
-            }
-        }
+        prefsEdits.commit();
     }
-
-     */
 }

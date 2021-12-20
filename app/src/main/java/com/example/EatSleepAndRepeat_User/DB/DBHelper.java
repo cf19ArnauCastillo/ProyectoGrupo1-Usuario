@@ -8,6 +8,11 @@ import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
 import com.example.EatSleepAndRepeat_User.Classes.Order;
+import com.example.EatSleepAndRepeat_User.Classes.Order;
+import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
+import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,13 +27,16 @@ import java.util.Date;
 
 public class DBHelper {
     private static final String TAG = "DBHelper";
+    private static final String[] TAB_TITLES = new String[]{"All","Pizzas", "Appetizers", "Drinks", "Desserts"};
+
 
     // Instance  of the Firebase Database
 
     FirebaseDatabase db;
     DatabaseReference refDish;
     DatabaseReference refCat;
-    DatabaseReference refOrders;
+    DatabaseReference refOrder;
+
     ArrayList<Dish> dishes;
     ArrayList<Category> categories;
 
@@ -36,8 +44,7 @@ public class DBHelper {
         this.db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
         this.refDish = db.getReference("dish");
         this.refCat = db.getReference("category");
-        this.refOrders = db.getReference("order");
-
+        this.refOrder = db.getReference("order");
         dishes = new ArrayList<Dish>();
     }
 
@@ -49,9 +56,6 @@ public class DBHelper {
                     Category cat = ds.getValue(Category.class);
                     categories.add(cat);
                 }
-
-                //TODO este proceso es async: falta pasar la lista de categorias
-
             }
 
             @Override
@@ -61,34 +65,42 @@ public class DBHelper {
         });
     }
 
-
-    public void readDishes(){
-
-        Log.i("entro desde DBHelper", "------------_");
-        refDish.child("Drink").addListenerForSingleValueEvent(new ValueEventListener() {
-          @Override
-          public void onDataChange(DataSnapshot dataSnapshot) {
-              for (DataSnapshot ds : dataSnapshot.getChildren()){
-                  Dish dish = ds.getValue(Dish.class);
-                  dishes.add(dish);
-                  Log.i("DBHelper onDataChange", "------------------------------------" + dish.getName() + ds);
-              }
-
-              //Log.i("prova", "" + dishes.size() + " - " + dishes.get(0).getName());
-
-          }
-
-          @Override
-          public void onCancelled(DatabaseError databaseError) {
-             // System.out.println("The read failed: " + databaseError.getCode());
-          }
-        });
-    }
     public ArrayList<Dish> getDishes(){
-        readDishes();
-        return dishes;
+        ArrayList array = new ArrayList();
+        for (int i = 0; i < TAB_TITLES.length; i++){
+            refDish.child(TAB_TITLES[i]).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        for (DataSnapshot ds : task.getResult().getChildren()){
+                            Dish dish = ds.getValue(Dish.class);
+                            array.add(dish);
+                        }
+                    }
+                }
+
+            });
+        }
+        return array;
     }
 
+
+    // Creates a new Order object and adds it to the Database
+    // This method also allows to update all the values from a dish element
+    public void addOrder(Order order) {
+
+        //mDatabase = mDatabase.child("dish");
+        Log.i("total", ""+order.getTotalPrice());
+        DatabaseReference pushedPostRef = refOrder.child("order").push();
+
+        String orderId = pushedPostRef.getKey();
+        Log.i("testDB", "" + orderId);
+
+        refOrder.child(orderId).setValue(order);
+    }
 
     // Creates a new Dish object and adds it to the Database
     // This method also allows to update all the values from a dish element

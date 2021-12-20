@@ -8,16 +8,29 @@ public class Order implements Serializable {
     public ArrayList<ItemCart> products;
     private String status;
     private String date;
+    private Double totalPrice;
+
 
 
     public Order() {
     }
 
-    public Order(String user, ArrayList<ItemCart> products, String status, String date) {
+
+    public Order(String user, ArrayList<ItemCart> products, String status, String date, Double totalPrice) {
+
         this.user = user;
         this.products = products;
         this.status = status;
         this.date = date;
+        this.totalPrice = totalPrice;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getStatus() {
@@ -52,5 +65,4 @@ public class Order implements Serializable {
         this.products = products;
     }
 }
-
 

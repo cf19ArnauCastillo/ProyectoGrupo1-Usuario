@@ -104,21 +104,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/btnAdd"
+
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.333"
+
+
                     app:srcCompat="@drawable/ic_add" />
 
                 <TextView
                     android:id="@+id/txtNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="2dp"
+
+                    android:layout_marginEnd="5dp"
+
                     android:autoText="false"
                     android:elegantTextHeight="true"
                     android:fontFamily="@font/roboto_bold"
@@ -139,7 +144,20 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_remove" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageButton
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:background="@color/white"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/constraintIcons"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_remove" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

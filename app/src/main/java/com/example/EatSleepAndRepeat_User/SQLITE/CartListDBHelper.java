@@ -1,5 +1,7 @@
 package com.example.EatSleepAndRepeat_User.SQLITE;
 
+import static com.example.EatSleepAndRepeat_User.SQLITE.CartListContacts.ListCart.COLUMN_NAME;
+import static com.example.EatSleepAndRepeat_User.SQLITE.CartListContacts.ListCart.COLUMN_QUANTITY;
 import static com.example.EatSleepAndRepeat_User.SQLITE.CartListContacts.ListCart.TABLE_NAME;
 
 import android.annotation.SuppressLint;
@@ -11,6 +13,9 @@ import android.util.Log;
 
 
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.EatSleepAndRepeat_User.Classes.Dish;
+
 import java.util.ArrayList;
 
 public class CartListDBHelper extends SQLiteOpenHelper{
@@ -23,7 +28,9 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             + CartListContacts.ListCart.COLUMN_PRICE + " TEXT, "
             + CartListContacts.ListCart.COLUMN_QUANTITY + " TEXT, "
             + CartListContacts.ListCart.COLUMN_IMAGE + " INTEGER, "
-            + CartListContacts.ListCart.COLUMN_DESCRIPTION+" TEXT)";
+            + CartListContacts.ListCart.COLUMN_DESCRIPTION+" TEXT,"
+            + CartListContacts.ListCart.COLUMN_IDFIREBASE+" TEXT,"
+            + CartListContacts.ListCart.COLUM_CATEGORY+" TEXT "+ ")";
 
 
     public CartListDBHelper(Context context) {
@@ -32,6 +39,7 @@ public class CartListDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        Log.i("crear base de datos", "hola_____");
         sqLiteDatabase.execSQL(SQL_CREATE_ENTRIES);
 
     }
@@ -40,6 +48,10 @@ public class CartListDBHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
 
+
+    public void createTable(SQLiteDatabase db){
+        db.execSQL(SQL_CREATE_ENTRIES);
+    }
     public void insertContact(SQLiteDatabase db, CartList c){
         //Check the bd is open
         if (db.isOpen()){
@@ -52,12 +64,17 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             values.put(CartListContacts.ListCart.COLUMN_QUANTITY, c.getQuantity());
             values.put(CartListContacts.ListCart.COLUMN_DESCRIPTION, c.getDescription());
             values.put(CartListContacts.ListCart.COLUMN_IMAGE, c.getImage());
+            values.put(CartListContacts.ListCart.COLUMN_IDFIREBASE, c.getIdFirebase());
+            values.put(CartListContacts.ListCart.COLUM_CATEGORY, c.getCategory());
+
 
             db.insert(TABLE_NAME, null, values);
         }else{
             Log.i("sql","Database is closed");
         }
     }
+
+
 
     // Delete the order
     public void deleteOrder(SQLiteDatabase dblite) {
@@ -66,10 +83,10 @@ public class CartListDBHelper extends SQLiteOpenHelper{
 
     public ArrayList<CartList> getAllData(SQLiteDatabase db){
         ArrayList<CartList> array_cart = new ArrayList<>();
-        Cursor cursor = db.query(TABLE_NAME, new String[]{"name", "description", "quantity", "price","image","id"},null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME, new String[]{"name", "description", "quantity", "price","image","id", "idFirebase", "category"},null, null, null, null, null);
         CartList c;
         while (cursor.moveToNext()) {
-            c = new CartList(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5));
+            c = new CartList(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getString(7));
             array_cart.add(c);
         }
         cursor.close();
@@ -86,4 +103,38 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             Log.i("sql","Database is closed");
         }
     }
+
 }
+
+
+
+
+    public boolean itemAdded(SQLiteDatabase db, String name){
+
+        if (db.isOpen()){
+            //Creation of the register for insert object with the content values
+            ContentValues values = new ContentValues();
+            Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = '" + name + "'", null);
+            int num = cursor.getCount();
+            if (num == 0) return false;
+        } else {
+            Log.i("sql","Database is closed");
+        }
+        return true;
+    }
+
+    public void updateQuantity(SQLiteDatabase db, String name, String quantity){
+        //Check the bd is open
+        if (db.isOpen()){
+            //Creation of the register for insert object with the content values
+            ContentValues values = new ContentValues();
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " +
+                    COLUMN_QUANTITY + " = '" + quantity + "'" +
+                    " WHERE " + COLUMN_NAME + " = '" + name + "'");
+        } else {
+            Log.i("sql","Database is closed");
+        }
+    }
+
+}
+

@@ -28,7 +28,7 @@
     <string name="txtCart">Cart</string>
     <string name="txtTotal">Total:</string>
     <string name="txtCheckout">Checkout</string>
-    <string name="removeOrder">Order</string>
+    <string name="removeOrder">Clean</string>
     <string name="alertDelete">Tht order will be delete permanently</string>
     <string name="confirmation">Do you want to continue?</string>
     <string name="deletedOrder">Order successfully deleted</string>

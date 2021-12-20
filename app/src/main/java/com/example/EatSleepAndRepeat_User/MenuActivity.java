@@ -1,7 +1,9 @@
 package com.example.EatSleepAndRepeat_User;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -14,15 +16,16 @@ public class MenuActivity extends AppCompatActivity {
 
     private CartListDBHelper cartHelper;
     private SQLiteDatabase dblite;
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
+        cartHelper = new CartListDBHelper(context);
         // Initialize in home fragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_app, new FragmentHome()).commit();
 
         // Connect with bd
         cartHelper = new CartListDBHelper(getApplicationContext());
@@ -46,10 +49,11 @@ public class MenuActivity extends AppCompatActivity {
                     break;
 
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_app, selectedFragment).commit();
             return true;
 
         });
+
     }
 }
 

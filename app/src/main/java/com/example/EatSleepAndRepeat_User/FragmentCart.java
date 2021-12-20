@@ -1,16 +1,20 @@
 package com.example.EatSleepAndRepeat_User;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,21 +37,32 @@ import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
 import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
+import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterCart;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
+import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class FragmentCart extends Fragment {
 
@@ -57,6 +72,7 @@ public class FragmentCart extends Fragment {
     private ArrayList<CartList> items;
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
+    private DatabaseReference refDish;
 
     public FragmentCart() {
         // Required empty public constructor
@@ -64,6 +80,7 @@ public class FragmentCart extends Fragment {
     public FragmentCart(CartListDBHelper cartHelper, SQLiteDatabase dblite) {
         this.cartHelper = cartHelper;
         this.dblite = dblite;
+
     }
 
     public static FragmentCart newInstance(String param1, String param2) {
@@ -89,7 +106,6 @@ public class FragmentCart extends Fragment {
         // Get all items from cart
         Log.i("dbHEPER________", items.get(0).getName());
         items = cartHelper.getAllData(dblite);
-        Log.i("dbHEPER________", items.get(0).getName());
         RecyclerViewAdapterCart adapter = new RecyclerViewAdapterCart(getContext(), items, cartHelper, dblite);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -113,7 +129,7 @@ public class FragmentCart extends Fragment {
                                 //OK METHOD
                                 //TODO: BD
                                 cartHelper.deleteOrder(dblite);
-                                //refresh();
+                                refresh();
                                 Toast.makeText(getContext(), getString(R.string.deletedOrder), Toast.LENGTH_LONG).show();
                             }
                         })
@@ -126,19 +142,61 @@ public class FragmentCart extends Fragment {
                 dialog.show();
             }
         });
+
+        Button checkout = view.findViewById(R.id.btnCheckout);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ArrayList<ItemCart> cart = new ArrayList<>();
+
+                for(int i = 0; i < items.size(); i++){
+                    CartList c = items.get(i);
+                    Dish dish = new Dish(c.getIdFirebase(), c.getImage(), c.getCategory(), c.getName(), c.getCategory(), Double.valueOf(c.getPrice()));
+                    ItemCart item = new ItemCart(dish, Integer.valueOf(c.getQuantity()));
+                    cart.add(item);
+                }
+
+                Date date = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String strDate = dateFormat.format(date);
+                SharedPreferences prefs = getContext().getSharedPreferences("SharedP", Context.MODE_PRIVATE);
+                Log.i("___________", "__________");
+
+                Log.i("user", ""+prefs.getString("mail", ""));
+                Order order = new Order(
+                        prefs.getString("mail", ""),
+                        cart,
+                        "Sent",
+                        strDate,
+                        Double.valueOf(getAmount())
+                );
+
+                dbHelper.addOrder(order);
+                Toast.makeText(getContext(), "Confirmation order", Toast.LENGTH_LONG).show();
+                cartHelper.deleteOrder(dblite);
+                cartHelper.createTable(dblite);
+                refresh();
+            }
+        });
+
+
         return view;
     }
     public String getAmount(){
         double total = 0;
+
         for (int i = 0; i < items.size(); i++) {
-            total += Double.valueOf(items.get(i).getPrice());
+            total += Double.valueOf(items.get(i).getPrice())*Double.valueOf(items.get(i).getQuantity());
         }
-        return String.valueOf(total);
+
+        return String.format("%.2f", total);
     }
 
     // Fragment screen it refresh.
     public void refresh(){
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(FragmentCart.this).attach(FragmentCart.this).commit();
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
+
+
 }

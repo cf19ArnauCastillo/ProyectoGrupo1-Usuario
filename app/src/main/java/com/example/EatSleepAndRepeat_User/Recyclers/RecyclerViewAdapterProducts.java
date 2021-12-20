@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +55,6 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
     }
 
     //okay
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(dishes.get(position).getName());
@@ -77,15 +77,26 @@ public class RecyclerViewAdapterProducts extends RecyclerView.Adapter<RecyclerVi
             public void onClick(View view) {
                 cartHelper = new CartListDBHelper(context);
                 dblite = cartHelper.getWritableDatabase();
-                CartList item = new CartList(dishes.get(position).getName(),
-                        "a",
-                        holder.txtNumber.getText().toString(),
-                        Double.toString(dishes.get(position).getPrice()),
-                        dishes.get(position).getImageName());
 
-                Log.i("PRODUCT_____", dishes.get(position).getName());
+                Log.i("id_____", ""+dishes.get(position).getId());
 
-                cartHelper.insertContact(dblite, item);
+                boolean isAdded = cartHelper.itemAdded(dblite, dishes.get(position).getName());
+                if(isAdded){
+                    cartHelper.updateQuantity(dblite, dishes.get(position).getName(), holder.txtNumber.getText().toString() );
+                } else {
+                    CartList item = new CartList(dishes.get(position).getName(),
+                            "a",
+                            holder.txtNumber.getText().toString(),
+                            Double.toString(dishes.get(position).getPrice()),
+                            dishes.get(position).getImageName(),
+                            dishes.get(position).getId(),
+                            dishes.get(position).getCategory());
+
+                    Log.i("PRODUCT_____", dishes.get(position).getName());
+
+                    cartHelper.insertContact(dblite, item);
+                }
+                    Toast.makeText(view.getContext(), dishes.get(position).getName() + " added", Toast.LENGTH_LONG).show();
 
             }
         });

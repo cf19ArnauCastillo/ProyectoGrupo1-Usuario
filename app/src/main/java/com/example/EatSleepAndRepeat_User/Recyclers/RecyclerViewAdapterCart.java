@@ -1,6 +1,7 @@
 package com.example.EatSleepAndRepeat_User.Recyclers;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.R;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartList;
@@ -23,7 +27,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     private Context context;
     private SQLiteDatabase dblite;
     private CartListDBHelper cartHelper;
-    private Fragment fragment;
+    private FragmentCart fragment;
     private DBHelper dbHelper = new DBHelper();
 
     public RecyclerViewAdapterCart(Context context, ArrayList<CartList> arrA, CartListDBHelper cartHelper, SQLiteDatabase dblite){
@@ -41,6 +45,33 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        CartList i = items.get(position);
+
+        holder.name.setText(i.getName());
+        holder.desc.setText(i.getDescription());
+        holder.quantity.setText(i.getQuantity());
+        holder.amount.setText(getAmount(i.getQuantity(), i.getPrice()));
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference dateRef = storageRef.child(i.getImage());
+        dateRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
+            @Override
+            public void onSuccess(Uri downloadUrl){
+                Glide.with(context).load(downloadUrl).into(holder.image);
+            }
+        });
+
+
+        //This button will delete a item on the db.
+        holder.deleteItem.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int id = i.getId();
+                cartHelper.deleteItem(dblite, id);
+                FragmentCart cart = (FragmentCart) fragment.getParentFragmentManager().findFragmentById(R.id.fragment_layout_cart);
+                cart.refresh();
+            }
+        });
     }
 
     @Override
@@ -74,5 +105,4 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             amount = itemView.findViewById(R.id.txtPriceProduct);
         }
     }
-
 }

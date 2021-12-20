@@ -16,6 +16,8 @@ import com.example.EatSleepAndRepeat_User.Classes.Dish;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.example.EatSleepAndRepeat_User.databinding.FragmentProductLabelBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,8 +31,10 @@ import java.util.ArrayList;
  */
 public class PlaceholderFragment extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "0";
-    private static final String[] TAB_TITLES = new String[]{"Pizza", "Appetizer", "Drinks", "Desserts"};
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String[] TAB_TITLES = new String[]{"All","Pizzas", "Appetizers", "Drinks", "Desserts"};
+
 
     FirebaseDatabase db;
     DatabaseReference refDish;
@@ -82,7 +86,6 @@ public class PlaceholderFragment extends Fragment {
         //en fer la consulta a la bbdd heu de passar el child de la categoria escollida
 
         db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
-        refDish = db.getReference("dish");
 
         String tab = TAB_TITLES[Integer.valueOf(ARG_SECTION_NUMBER)];
         Log.i("TAB:", tab);
@@ -108,19 +111,6 @@ public class PlaceholderFragment extends Fragment {
             }
         });
 
-       /* RecyclerViewAdapterProducts adapter = new RecyclerViewAdapterProducts(array);
-        recyclerProducts.setAdapter(adapter);
-        recyclerProducts.setLayoutManager(new GridLayoutManager(getContext(), 2));*/
-        /*
-        final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-         */
         return root;
     }
 

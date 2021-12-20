@@ -3,7 +3,6 @@ package com.example.EatSleepAndRepeat_User.Classes;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class Order implements Serializable {
     public String user;
     public ArrayList<ItemCart> products;
@@ -12,10 +11,13 @@ public class Order implements Serializable {
     private Double totalPrice;
 
 
+
     public Order() {
     }
 
+
     public Order(String user, ArrayList<ItemCart> products, String status, String date, Double totalPrice) {
+
         this.user = user;
         this.products = products;
         this.status = status;
@@ -63,3 +65,4 @@ public class Order implements Serializable {
         this.products = products;
     }
 }
+

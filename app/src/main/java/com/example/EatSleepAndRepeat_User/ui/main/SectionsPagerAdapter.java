@@ -22,7 +22,7 @@ import com.example.EatSleepAndRepeat_User.R;
 public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tabAll, R.string.tabPizzas, R.string.tabStarters, R.string.tabDesserts, R.string.tabDrinks};
+    private static final int[] TAB_TITLES = new int[]{R.string.tabPizzas, R.string.tabAppetizers, R.string.tabDesserts, R.string.tabDrinks};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {

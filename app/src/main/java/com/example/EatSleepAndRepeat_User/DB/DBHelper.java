@@ -3,10 +3,11 @@ package com.example.EatSleepAndRepeat_User.DB;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.EatSleepAndRepeat_User.Classes.Category;
 import com.example.EatSleepAndRepeat_User.Classes.Dish;
+import com.example.EatSleepAndRepeat_User.Classes.ItemCart;
+import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.example.EatSleepAndRepeat_User.Classes.Order;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterHome;
 import com.example.EatSleepAndRepeat_User.Recyclers.RecyclerViewAdapterProducts;
@@ -18,7 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class DBHelper {
     private static final String TAG = "DBHelper";
@@ -31,6 +36,7 @@ public class DBHelper {
     DatabaseReference refDish;
     DatabaseReference refCat;
     DatabaseReference refOrder;
+
     ArrayList<Dish> dishes;
     ArrayList<Category> categories;
 
@@ -160,6 +166,33 @@ public class DBHelper {
         };
         mDishReference.addValueEventListener(dishListener);
     }
+
+    public void addOrder() {
+
+        //mDatabase = mDatabase.child("dish");
+
+        DatabaseReference pushedPostRef = refOrders.child("order").push();
+
+        String orderId = pushedPostRef.getKey();
+        Log.i("testDB", "" + orderId);
+
+
+        Dish dish = new Dish("-MpwFyCfweiNw281SYwu","Appetizer_2021_12_02_18_49_22","Appetizer","bravas","Esto son unas buenas bravas",5.99);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String strDate = dateFormat.format(date);
+        ItemCart cart = new ItemCart(dish, 2);
+
+        ArrayList<ItemCart> items = new ArrayList<ItemCart>();
+        items.add(cart);
+        items.add(cart);
+        items.add(cart);
+
+        Order order = new Order("ariadna", items, "Received", strDate);
+
+        refOrders.child(orderId).setValue(order);
+    }
+
     /*public void getAllDishes(){
         db.collection("dish")
                 .get()

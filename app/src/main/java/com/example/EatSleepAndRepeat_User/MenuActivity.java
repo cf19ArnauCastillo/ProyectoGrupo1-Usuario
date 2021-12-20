@@ -8,6 +8,7 @@ import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.EatSleepAndRepeat_User.DB.DBHelper;
 import com.example.EatSleepAndRepeat_User.SQLITE.CartListDBHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -38,10 +39,10 @@ public class MenuActivity extends AppCompatActivity {
                     selectedFragment = new FragmentHome();
                     break;
                 case R.id.nav_menu:
-                    selectedFragment = new FragmentProducts(cartHelper, dblite);
+                    selectedFragment = new FragmentProducts();
                     break;
                 case R.id.nav_cart:
-                    selectedFragment = new FragmentCart(cartHelper, dblite);
+                    selectedFragment = new FragmentCart();
                     break;
                 case R.id.nav_settings:
                     selectedFragment = new FragmentSettings();

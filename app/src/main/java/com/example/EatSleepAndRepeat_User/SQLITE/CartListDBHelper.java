@@ -93,9 +93,6 @@ public class CartListDBHelper extends SQLiteOpenHelper{
         return array_cart;
     }
 
-
-
-
     // Deletes a item of database by id
     public void deleteItem(SQLiteDatabase db, int id){
 
@@ -106,6 +103,9 @@ public class CartListDBHelper extends SQLiteOpenHelper{
             Log.i("sql","Database is closed");
         }
     }
+
+}
+
 
 
 
@@ -137,3 +137,4 @@ public class CartListDBHelper extends SQLiteOpenHelper{
     }
 
 }
+

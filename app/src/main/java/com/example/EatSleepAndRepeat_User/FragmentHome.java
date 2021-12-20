@@ -28,8 +28,8 @@ import java.util.ArrayList;
 
 public class FragmentHome extends Fragment {
 
-    private DBHelper db;
-    FirebaseDatabase ddbb;
+    private DBHelper dbHelper;
+    FirebaseDatabase db;
     DatabaseReference refCat;
 
     public FragmentHome() {
@@ -46,7 +46,7 @@ public class FragmentHome extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Crea la instancia a la BD
-        db = new DBHelper();
+        dbHelper = new DBHelper();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,8 +58,8 @@ public class FragmentHome extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerHome);
 
         // Provando que funciona: (Borrar cuando funcione)
-        ddbb = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
-        refCat = ddbb.getReference("category");
+        db = FirebaseDatabase.getInstance("https://admin-987aa-default-rtdb.europe-west1.firebasedatabase.app/");
+        refCat = db.getReference("category");
         refCat.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,11 +80,7 @@ public class FragmentHome extends Fragment {
 
             }
         });
-        // Descomentar cuando funcione
-        /*RecyclerViewAdapterHome adapter = new RecyclerViewAdapterHome(categories);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));*/
-        // Inflate the layout for this fragment
+
         return view;
     }
 }

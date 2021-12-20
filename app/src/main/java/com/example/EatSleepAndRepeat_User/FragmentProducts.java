@@ -44,6 +44,7 @@ public class FragmentProducts extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+
     public FragmentProducts() {
         // Required empty public constructor
     }

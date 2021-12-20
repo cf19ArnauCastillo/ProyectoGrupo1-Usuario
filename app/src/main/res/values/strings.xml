@@ -41,9 +41,8 @@
     <string name="txtAddProducts">Add to cart</string>
 
     <!--Tabs-->
-    <string name="tabAll">All</string>
     <string name="tabPizzas">Pizzas</string>
-    <string name="tabStarters">Starters</string>
+    <string name="tabAppetizers">Appetizers</string>
     <string name="tabDesserts">Desserts</string>
     <string name="tabDrinks">Drinks</string>
     <string name="title_activity_tabbed">tabbed</string>
@@ -51,6 +50,5 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_category">CategoryActivity</string>
     <string name="addedProduct">The item was added correctly</string>
-
 
 </resources>

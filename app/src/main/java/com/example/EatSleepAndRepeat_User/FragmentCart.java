@@ -113,6 +113,7 @@ public class FragmentCart extends Fragment {
                                 //OK METHOD
                                 //TODO: BD
                                 cartHelper.deleteOrder(dblite);
+                                cartHelper.createTable(dblite);
                                 refresh();
                                 Toast.makeText(getContext(), getString(R.string.deletedOrder), Toast.LENGTH_LONG).show();
                             }

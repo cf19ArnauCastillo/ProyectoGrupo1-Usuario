@@ -72,8 +72,7 @@ public class RecyclerViewAdapterCart extends RecyclerView.Adapter<RecyclerViewAd
             public void onClick(View v) {
                 int id = i.getId();
                 cartHelper.deleteItem(dblite, id);
-                FragmentCart cart = (FragmentCart) fragment.getParentFragmentManager().findFragmentById(R.id.fragment_layout_cart);
-                cart.refresh();
+
             }
         });
     }
